@@ -403,7 +403,7 @@ button {
 .project-image-two{
     background-image:
     linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.65)),
-    url("images/project-2..webp");
+    url("images/project-2.webp");
 
     background-size:cover;
     background-position:center;
