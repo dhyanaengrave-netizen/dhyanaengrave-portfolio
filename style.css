@@ -178,7 +178,7 @@ button {
     position: absolute;
     inset: 0;
 
-    background: url("images/contact-bg.png12.png") center center/cover no-repeat;
+    background: url("images/contact-bg.png12.webp") center center/cover no-repeat;
 
     z-index: 0;
 }
@@ -394,7 +394,7 @@ button {
 .project-image-one{
     background-image:
     linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.65)),
-    url("images/project-1.png");
+    url("images/project-1.webp");
 
     background-size:cover;
     background-position:center;
@@ -403,7 +403,7 @@ button {
 .project-image-two{
     background-image:
     linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.65)),
-    url("images/project-2.png");
+    url("images/project-2..webp");
 
     background-size:cover;
     background-position:center;
@@ -412,7 +412,7 @@ button {
 .project-image-three{
     background-image:
     linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.65)),
-    url("images/project-3.png");
+    url("images/project-3.webp");
 
     background-size:cover;
     background-position:center;
@@ -421,7 +421,7 @@ button {
 .project-image-four{
     background-image:
     linear-gradient(rgba(0,0,0,.15),rgba(0,0,0,.65)),
-    url("images/project-4.png");
+    url("images/project-4.webp");
 
     background-size:cover;
     background-position:center;
@@ -655,7 +655,7 @@ button {
 
 .contact{
     position: relative;
-    background: url("images/contact-bg.png.png") center center/cover no-repeat;
+    background: url("images/contact-bg.png.webp") center center/cover no-repeat;
     overflow: hidden;
     background-size: contain;
     background-color: #c96d6d;

@@ -122,7 +122,7 @@ const serviceGalleryData = {
 ];
 
         return {
-            image: `images/relief-${number}.png`,
+            image: `images/relief-${number}.webp`,
             alt: names[index],
             category: categories[index],
             title: names[index],
@@ -155,7 +155,7 @@ const serviceGalleryData = {
         ];
 
         return {
-            image: `images/photo-3d-${number}.png`,
+            image: `images/photo-3d-${number}.webp`,
             alt: names[index],
             category: "PHOTO TO 3D",
             title: names[index],
@@ -188,7 +188,7 @@ const serviceGalleryData = {
         ];
 
         return {
-            image: `images/vector-${number}.png`,
+            image: `images/vector-${number}.webp`,
             alt: names[index],
             category: "VECTOR & 2D DESIGN",
             title: names[index],
@@ -221,7 +221,7 @@ const serviceGalleryData = {
         ];
 
         return {
-            image: `images/cnc-file-${number}.png`,
+            image: `images/cnc-file-${number}.webp`,
             alt: names[index],
             category: "CNC FILE PREPARATION",
             title: names[index],
@@ -290,7 +290,7 @@ const serviceGalleryData = {
 ];
 
     return {
-        image: `images/murti-${number}.png`,
+        image: `images/murti-${number}.webp`,
         alt: names[index],
         category: categories[index],
         title: names[index],
