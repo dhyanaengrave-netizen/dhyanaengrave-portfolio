@@ -40,7 +40,23 @@
 
 
         <!-- RIGHT FORM -->
-        <form class="project-form">
+        <form
+    class="project-form"
+    action="https://formsubmit.co/Dhyanaengrave@gmail.com"
+    method="POST"
+>
+ <input type="hidden" name="_subject" value="New CNC Project Inquiry - Dhyana Engrave">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+
+    <label>First name *</label>
+    <input type="text" name="first-name" required>
+
+    <label>Last name *</label>
+    <input type="text" name="last-name" required>
+
+    <label>Email *</label>
+    <input type="email" name="email" required>
 
             <label>First name *</label>
             <input type="text" name="first-name" required>
@@ -71,11 +87,13 @@
 
             <select name="file-format">
                 <option value="">Select file format</option>
-                <option>STL</option>
-                <option>OBJ</option>
-                <option>DXF</option>
-                <option>DWG</option>
-                <option>EPS</option>
+                <option>.STL</option>
+                <option>.OBJ</option>
+                <option>.DXF</option>
+                <option>.DWG</option>
+                <option>.EPS</option>
+                <option>.RLF</option>
+                <option>.TAP</option>
                 <option>Other</option>
             </select>
 
