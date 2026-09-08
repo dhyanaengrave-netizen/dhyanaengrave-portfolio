@@ -41,9 +41,12 @@
 
         <!-- RIGHT FORM -->
         <form
+  <form
     class="project-form"
     action="https://formsubmit.co/Dhyanaengrave@gmail.com"
     method="POST"
+    enctype="multipart/form-data"
+>
 >
  <input type="hidden" name="_subject" value="New CNC Project Inquiry - Dhyana Engrave">
     <input type="hidden" name="_captcha" value="false">
@@ -96,7 +99,13 @@
                 <option>.TAP</option>
                 <option>Other</option>
             </select>
+<label>Reference Photo / File</label>
 
+<input
+    type="file"
+    name="reference-file"
+    accept=".jpg,.jpeg,.png,.webp,.pdf"
+>
 
             <label>Project Size</label>
 
@@ -105,7 +114,21 @@
                 <input type="text" placeholder="Height">
                 <input type="text" placeholder="Depth">
             </div>
+<label>Material</label>
 
+<select name="material">
+    <option value="">Select material</option>
+    <option>Wood</option>
+    <option>MDF</option>
+    <option>Stone</option>
+    <option>Marble</option>
+    <option>Granite</option>
+    <option>Corian</option>
+    <option>Acrylic</option>
+    <option>Metal</option>
+    <option>Foam</option>
+    <option>Other</option>
+</select>
 
             <label>Tell us about your project</label>
 
