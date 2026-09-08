@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Out Cut 3D Models | Dhyana Engrave</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ===== OUTCUT PAGE ONLY ===== */
+
+        .outcut-page {
+            background: #f6f5ef;
+            padding: 70px 40px 120px;
+            color: #4d2b1f;
+        }
+
+        .outcut-top {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .outcut-top small {
+            letter-spacing: 3px;
+            font-size: 12px;
+        }
+
+        .outcut-top h1 {
+            margin: 15px 0 25px;
+
+            font-size: clamp(55px, 6vw, 100px);
+            line-height: .92;
+            letter-spacing: -4px;
+        }
+
+        .outcut-top p {
+            max-width: 650px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+
+        /* ===== GALLERY ===== */
+
+        .outcut-gallery {
+            max-width: 1100px;
+            margin: 0 auto;
+
+            display: grid;
+            grid-template-columns: repeat(4, 240px);
+
+            justify-content: center;
+            align-items: start;
+
+            gap: 50px 30px;
+        }
+
+        .outcut-card {
+            width: 240px;
+        }
+
+
+        /* PHOTO NEVER CROPS */
+
+        .outcut-card img {
+            width: 240px !important;
+            height: 240px !important;
+
+            max-width: 240px !important;
+            max-height: 240px !important;
+
+            object-fit: contain !important;
+            object-position: center !important;
+
+            display: block !important;
+
+            background: #111;
+        }
+
+
+        /* TITLE */
+
+        .outcut-card-title {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+
+            margin-top: 12px;
+        }
+
+        .outcut-card-title h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .outcut-card-title span {
+            font-size: 14px;
+            font-style: italic;
+        }
+
+
+        /* DESCRIPTION */
+
+        .outcut-card p {
+            margin-top: 9px;
+
+            font-size: 13px;
+            line-height: 1.45;
+        }
+
+
+        /* TABLET */
+
+        @media (max-width: 1050px) {
+
+            .outcut-gallery {
+                grid-template-columns: repeat(3, 220px);
+            }
+
+            .outcut-card,
+            .outcut-card img {
+                width: 220px !important;
+            }
+
+            .outcut-card img {
+                height: 220px !important;
+            }
+        }
+
+
+        /* MOBILE */
+
+        @media (max-width: 750px) {
+
+            .outcut-page {
+                padding: 50px 15px 80px;
+            }
+
+            .outcut-gallery {
+                grid-template-columns: repeat(2, 155px);
+                gap: 35px 12px;
+            }
+
+            .outcut-card,
+            .outcut-card img {
+                width: 155px !important;
+            }
+
+            .outcut-card img {
+                height: 155px !important;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body class="inner-page">
+
+
+    <!-- SAME TOP BAR -->
+
+    <header class="header inner-header">
+
+        <a href="index.html" class="brand">
+            Dhyana Engrave
+        </a>
+
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#cnc-portfolio" class="active">Portfolio</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+
+        <a href="index.html#contact" class="quote-link">
+            Free Quote
+        </a>
+
+    </header>
+
+
+    <main class="outcut-page">
+
+        <div class="outcut-top">
+
+            <small>DHYANA ENGRAVE / PORTFOLIO</small>
+
+            <h1>
+                Out Cut<br>
+                3D Models
+            </h1>
+
+            <p>
+                A collection of standalone and out-cut 3D models created
+                for CNC machining, carving and custom fabrication.
+            </p>
+
+        </div>
+
+
+        <div class="outcut-gallery">
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-1.webp" alt="Out Cut Design 01">
+
+                <div class="outcut-card-title">
+                    <h3>Custom 3D Model</h3>
+                    <span>01</span>
+                </div>
+
+                <p>
+                    Detailed standalone 3D model created for precision CNC
+                    machining and fabrication.
+                </p>
+            </div>
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-2.webp" alt="Out Cut Design 02">
+
+                <div class="outcut-card-title">
+                    <h3>Decorative 3D Model</h3>
+                    <span>02</span>
+                </div>
+
+                <p>
+                    Decorative 3D artwork prepared for CNC carving and
+                    custom production.
+                </p>
+            </div>
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-3.webp" alt="Out Cut Design 03">
+
+                <div class="outcut-card-title">
+                    <h3>Sculptural Model</h3>
+                    <span>03</span>
+                </div>
+
+                <p>
+                    Precision sculptural model developed for CNC machining
+                    and fabrication.
+                </p>
+            </div>
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-4.webp" alt="Out Cut Design 04">
+
+                <div class="outcut-card-title">
+                    <h3>Ornamental Model</h3>
+                    <span>04</span>
+                </div>
+
+                <p>
+                    Detailed ornamental artwork created for decorative CNC
+                    applications.
+                </p>
+            </div>
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-5.webp" alt="Out Cut Design 05">
+
+                <div class="outcut-card-title">
+                    <h3>CNC Ready Model</h3>
+                    <span>05</span>
+                </div>
+
+                <p>
+                    Production-ready model optimized for accurate CNC machining.
+                </p>
+            </div>
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-6.webp" alt="Out Cut Design 06">
+
+                <div class="outcut-card-title">
+                    <h3>Architectural Element</h3>
+                    <span>06</span>
+                </div>
+
+                <p>
+                    Architectural 3D element designed for carving and fabrication.
+                </p>
+            </div>
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-7.webp" alt="Out Cut Design 07">
+
+                <div class="outcut-card-title">
+                    <h3>Out Cut Design</h3>
+                    <span>07</span>
+                </div>
+
+                <p>
+                    Standalone detailed model prepared for precision CNC work.
+                </p>
+            </div>
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-8.webp" alt="Out Cut Design 08">
+
+                <div class="outcut-card-title">
+                    <h3>Carving Model</h3>
+                    <span>08</span>
+                </div>
+
+                <p>
+                    Custom model developed for wood, stone and CNC carving.
+                </p>
+            </div>
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-9.webp" alt="Out Cut Design 09">
+
+                <div class="outcut-card-title">
+                    <h3>3D Sculpture</h3>
+                    <span>09</span>
+                </div>
+
+                <p>
+                    Detailed digital sculpture optimized for CNC production.
+                </p>
+            </div>
+
+
+            <div class="outcut-card">
+                <img src="gallery/outcut/outcut-10.webp" alt="Out Cut Design 10">
+
+                <div class="outcut-card-title">
+                    <h3>Custom CNC Model</h3>
+                    <span>10</span>
+                </div>
+
+                <p>
+                    Custom standalone 3D model prepared for accurate CNC machining.
+                </p>
+            </div>
+
+
+        </div>
+
+    </main>
+
+</body>
+</html>
