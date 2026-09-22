@@ -9,107 +9,243 @@
 
   <style>
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       background: #f5f2eb;
       color: #4a281b;
+      overflow-x: hidden;
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    /* =========================
+       PAGE
+    ========================= */
+
     .models-section {
+      width: 100%;
       max-width: 1400px;
-      margin: auto;
-      padding: 60px 30px;
+      margin: 0 auto;
+      padding: 60px 30px 90px;
     }
 
     .models-section h1 {
       text-align: center;
-      font-size: 48px;
-      margin: 0 0 10px;
+      font-size: clamp(38px, 5vw, 60px);
+      line-height: 1;
+      margin: 0 0 15px;
     }
 
     .subtitle {
       text-align: center;
       font-size: 18px;
+      line-height: 1.5;
       margin: 0 0 50px;
+      color: #70594f;
     }
 
-    /* GRID */
+    /* =========================
+       GRID
+    ========================= */
+
     .models-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 25px;
       align-items: stretch;
     }
 
-    /* CARD */
-    .model-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.10);
+    /* =========================
+       CARD
+    ========================= */
 
-      display: flex;
-      flex-direction: column;
+    .model-card {
       min-width: 0;
+      overflow: hidden;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.10);
     }
 
-    /* VIEWER */
+    /* =========================
+       VIEWER
+    ========================= */
+
     .viewer,
     .model-placeholder {
+      position: relative;
       width: 100%;
       height: 420px;
-      min-height: 420px;
-      flex: 0 0 420px;
-
       background: #eeeeea;
-      position: relative;
+      overflow: hidden;
     }
 
     .viewer {
-      cursor: pointer;
+      cursor: grab;
+
+      /*
+        Important for mobile:
+        OrbitControls can receive touch gestures.
+      */
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .viewer:active {
+      cursor: grabbing;
     }
 
     .viewer canvas {
       display: block;
-      width: 100%;
-      height: 100%;
+      width: 100% !important;
+      height: 100% !important;
+      outline: none;
+      touch-action: none;
     }
 
-    .model-placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #aaa;
-      font-size: 15px;
-    }
+    /* =========================
+       LOADING
+    ========================= */
 
-    /* LOADING */
     .loading {
       position: absolute;
       inset: 0;
+      z-index: 5;
 
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-direction: column;
 
-      color: #777;
+      gap: 12px;
+
+      padding: 20px;
+      text-align: center;
+
+      background: #eeeeea;
+      color: #6e625c;
+
       font-size: 14px;
 
       pointer-events: none;
-      z-index: 2;
     }
 
-    /* MODEL INFO */
+    .spinner {
+      width: 32px;
+      height: 32px;
+
+      border-radius: 50%;
+
+      border: 3px solid rgba(74, 40, 27, 0.15);
+      border-top-color: #4a281b;
+
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading.error {
+      color: #8d2f2f;
+    }
+
+    .loading.error .spinner {
+      display: none;
+    }
+
+    /* =========================
+       VIEW HINT
+    ========================= */
+
+    .viewer-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      z-index: 6;
+
+      transform: translateX(-50%);
+
+      padding: 7px 12px;
+
+      background: rgba(0, 0, 0, 0.62);
+      color: #fff;
+
+      border-radius: 20px;
+
+      font-size: 11px;
+      white-space: nowrap;
+
+      pointer-events: none;
+
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .viewer.loaded .viewer-hint {
+      opacity: 1;
+    }
+
+    /* =========================
+       EXPAND BUTTON
+    ========================= */
+
+    .expand-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 10;
+
+      width: 40px;
+      height: 40px;
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: rgba(0, 0, 0, 0.68);
+      color: #fff;
+
+      font-size: 20px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .viewer.loaded .expand-btn {
+      display: flex;
+    }
+
+    /* =========================
+       MODEL INFO
+    ========================= */
+
     .model-info {
-      height: 100px;
       min-height: 100px;
+
       padding: 15px 18px;
 
-      background: white;
+      background: #fff;
 
       display: flex;
       flex-direction: column;
@@ -118,74 +254,318 @@
 
     .model-info h2 {
       margin: 0 0 6px;
+
       font-size: 21px;
+      line-height: 1.15;
     }
 
     .model-info p {
       margin: 0;
+
       color: #777;
+
       font-size: 14px;
       line-height: 1.4;
     }
 
-    /* FULLSCREEN */
-    .viewer:fullscreen {
-      width: 100vw !important;
-      height: 100vh !important;
-      min-height: 100vh !important;
-      max-height: none !important;
+    /* =========================
+       COMING SOON
+    ========================= */
 
-      flex: none !important;
-      background: #eeeeea;
-      display: block;
+    .model-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
     }
 
-    .viewer:fullscreen canvas {
-      width: 100vw !important;
-      height: 100vh !important;
-      display: block;
+    .coming-animation {
+      text-align: center;
+      color: #4a281b;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 1000px) {
-      .models-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .coming-icon {
+      height: 45px;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+
+      gap: 6px;
+
+      margin-bottom: 20px;
+    }
+
+    .coming-icon span {
+      width: 6px;
+      height: 20px;
+
+      display: block;
+
+      background: #4a281b;
+
+      border-radius: 4px;
+
+      animation: comingBars 1.2s ease-in-out infinite;
+    }
+
+    .coming-icon span:nth-child(2) {
+      animation-delay: 0.15s;
+    }
+
+    .coming-icon span:nth-child(3) {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes comingBars {
+      0%,
+      100% {
+        height: 16px;
+        opacity: 0.4;
+      }
+
+      50% {
+        height: 42px;
+        opacity: 1;
       }
     }
 
+    .coming-text {
+      font-size: 20px;
+      font-weight: 700;
+
+      letter-spacing: 2px;
+    }
+
+    .coming-line {
+      width: 45px;
+      height: 1px;
+
+      margin: 14px auto;
+
+      background: #4a281b;
+      opacity: 0.45;
+    }
+
+    .coming-subtext {
+      font-size: 11px;
+      letter-spacing: 2px;
+      opacity: 0.65;
+    }
+
+    /* =========================
+       MOBILE-FRIENDLY MODAL
+    ========================= */
+
+    .model-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+
+      display: none;
+
+      background: #eeeeea;
+    }
+
+    .model-modal.active {
+      display: block;
+    }
+
+    .modal-viewer {
+      position: absolute;
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      touch-action: none;
+      overflow: hidden;
+    }
+
+    .modal-viewer canvas {
+      display: block;
+
+      width: 100% !important;
+      height: 100% !important;
+
+      touch-action: none;
+    }
+
+    .modal-close {
+      position: absolute;
+
+      top: max(15px, env(safe-area-inset-top));
+      right: max(15px, env(safe-area-inset-right));
+
+      z-index: 100005;
+
+      width: 46px;
+      height: 46px;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: rgba(0, 0, 0, 0.72);
+      color: #fff;
+
+      font-size: 28px;
+      line-height: 1;
+
+      cursor: pointer;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .modal-title {
+      position: absolute;
+
+      left: 50%;
+      bottom: max(18px, env(safe-area-inset-bottom));
+
+      z-index: 100005;
+
+      transform: translateX(-50%);
+
+      max-width: calc(100% - 40px);
+
+      padding: 9px 15px;
+
+      border-radius: 30px;
+
+      background: rgba(0, 0, 0, 0.62);
+      color: #fff;
+
+      text-align: center;
+
+      font-size: 13px;
+
+      pointer-events: none;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 1050px) {
+
+      .models-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media (max-width: 600px) {
+
       .models-section {
-        padding: 40px 20px;
+        padding: 35px 14px 60px;
       }
 
       .models-section h1 {
         font-size: 38px;
       }
 
+      .subtitle {
+        margin-bottom: 30px;
+        padding: 0 10px;
+
+        font-size: 15px;
+      }
+
       .models-grid {
         grid-template-columns: 1fr;
+        gap: 22px;
       }
+
+      .viewer,
+      .model-placeholder {
+        /*
+          Fixed huge 420px viewers were expensive on phones.
+        */
+        height: min(105vw, 410px);
+        min-height: 330px;
+      }
+
+      .model-info {
+        min-height: 90px;
+        padding: 14px 16px;
+      }
+
+      .model-info h2 {
+        font-size: 19px;
+      }
+
+      .model-info p {
+        font-size: 13px;
+      }
+
+      .viewer-hint {
+        bottom: 10px;
+      }
+
     }
+
   </style>
 </head>
 
 
 <body>
 
+
 <section class="models-section">
 
   <h1>3D Models</h1>
 
   <p class="subtitle">
-    Explore our CNC-ready 3D model collection
+    Explore our CNC-ready interactive 3D model collection
   </p>
 
-  <div class="models-grid" id="modelsGrid"></div>
+  <div
+    class="models-grid"
+    id="modelsGrid">
+  </div>
 
 </section>
 
 
-<!-- THREE.JS IMPORT MAP -->
+<!-- =========================
+     MOBILE / DESKTOP EXPANDED VIEW
+========================= -->
+
+<div
+  class="model-modal"
+  id="modelModal"
+  aria-hidden="true">
+
+  <div
+    class="modal-viewer"
+    id="modalViewer">
+  </div>
+
+  <button
+    class="modal-close"
+    id="modalClose"
+    type="button"
+    aria-label="Close 3D viewer">
+    ×
+  </button>
+
+  <div
+    class="modal-title"
+    id="modalTitle">
+  </div>
+
+</div>
+
+
+<!-- =========================
+     THREE.JS IMPORT MAP
+========================= -->
+
 <script type="importmap">
 {
   "imports": {
@@ -198,24 +578,24 @@
 
 <script type="module">
 
-import * as THREE from 'three';
+import * as THREE from "three";
 
 import {
   OrbitControls
-} from 'three/addons/controls/OrbitControls.js';
+} from "three/addons/controls/OrbitControls.js";
 
 import {
   GLTFLoader
-} from 'three/addons/loaders/GLTFLoader.js';
+} from "three/addons/loaders/GLTFLoader.js";
 
 import {
   MeshoptDecoder
-} from 'three/addons/libs/meshopt_decoder.module.js';
+} from "three/addons/libs/meshopt_decoder.module.js";
 
 
-/* ==================================================
-   MODEL LIST
-================================================== */
+/* =========================================================
+   EXISTING MODEL LIST
+========================================================= */
 
 const models = [
 
@@ -223,98 +603,123 @@ const models = [
     file: "./3D%20Model/1%20hanumaan-web.glb",
     name: "Hanuman 3D Sculpture",
     detail: "Detailed CNC Ready Religious 3D Model",
-    view: "front"
+    rotation: [0, 0, 0]
   },
 
   {
     file: "./3D%20Model/2%20Aadiyogi-web.glb",
     name: "Adiyogi Shiva 3D Model",
     detail: "CNC Ready Spiritual Sculpture Design",
-    view: "top"
+    rotation: [Math.PI / 2, 0, 0]
   },
 
   {
     file: "./3D%20Model/3%20Dwarpal-web.glb",
     name: "Dwarpal 3D Model",
     detail: "Traditional Guardian CNC Sculpture Design",
-    view: "front"
+    rotation: [0, 0, 0]
   },
 
   {
     file: "./3D%20Model/4%20Toran-web.glb",
     name: "Decorative Toran 3D Model",
     detail: "Ornamental CNC Ready Entrance Design",
-    view: "top"
+    rotation: [Math.PI / 2, 0, 0]
   },
 
   {
     file: "./3D%20Model/5%20Trishul-web.glb",
     name: "Trishul 3D Model",
     detail: "Detailed CNC Ready Trident Design",
-    view: "top"
+    rotation: [0, Math.PI / 2, 0]
   },
 
   {
     file: "./3D%20Model/6%20Todi-web.glb",
     name: "Todi 3D Model",
     detail: "Decorative CNC Ready 3D Design",
-    view: "top"
+    rotation: [0, Math.PI / 2, 0]
   },
 
   {
     file: "./3D%20Model/7%20Jewalary-web.glb",
     name: "Jewellery 3D Model",
     detail: "Detailed Ornamental 3D Design",
-    view: "front"
+    rotation: [0, 0, 0]
   },
 
   {
     file: "./3D%20Model/8%20Glass-web.glb",
     name: "Decorative Glass 3D Model",
     detail: "CNC Ready Decorative 3D Design",
-    view: "front"
+    rotation: [0, 0, 0]
   },
 
-{
+  {
     file: "./3D%20Model/9%20Pillar-web.glb",
     name: "Decorative Pillar 3D Model",
     detail: "Detailed Architectural CNC Design",
-    view: "front"
-},
+    rotation: [0, 0, 0]
+  },
 
-{
+  {
     file: "./3D%20Model/10%20Picock-web.glb",
     name: "Peacock 3D Model",
     detail: "Detailed Decorative CNC Ready 3D Design",
-    view: "front"
-}
+    rotation: [0, Math.PI / 2, 0]
+  }
 
 ];
-/* ==================================================
-   CREATE MODEL CARDS
-================================================== */
+
+
+/* =========================================================
+   CREATE CARDS
+========================================================= */
 
 const grid = document.getElementById("modelsGrid");
 
-models.forEach(function(modelData, index) {
 
-  const card = document.createElement("div");
+models.forEach((modelData, index) => {
+
+  const card = document.createElement("article");
 
   card.className = "model-card";
 
+
   card.innerHTML = `
+
     <div
       class="viewer"
       id="viewer-${index}"
-      title="Click to view fullscreen"
-    >
+      data-index="${index}">
+
       <div
         class="loading"
-        id="loading-${index}"
-      >
-        Loading 3D Model...
+        id="loading-${index}">
+
+        <div class="spinner"></div>
+
+        <span>
+          3D model will load when visible...
+        </span>
+
       </div>
+
+
+      <button
+        class="expand-btn"
+        type="button"
+        aria-label="Open ${modelData.name} in large viewer">
+        ⛶
+      </button>
+
+
+      <div class="viewer-hint">
+        Drag to rotate • Pinch / scroll to zoom
+      </div>
+
     </div>
+
 
     <div class="model-info">
 
@@ -327,25 +732,29 @@ models.forEach(function(modelData, index) {
       </p>
 
     </div>
+
   `;
+
 
   grid.appendChild(card);
 
 });
 
 
-/* ==================================================
-   COMING SOON CARDS 10 - 20
-================================================== */
+/* =========================================================
+   COMING SOON
+========================================================= */
 
-for (let i = 10; i <= 20; i++) {
+for (let i = 11; i <= 20; i++) {
 
-  const card = document.createElement("div");
+  const card = document.createElement("article");
 
   card.className = "model-card coming-card";
 
+
   card.innerHTML = `
-    <div class="model-placeholder coming-placeholder">
+
+    <div class="model-placeholder">
 
       <div class="coming-animation">
 
@@ -369,57 +778,345 @@ for (let i = 10; i <= 20; i++) {
 
     </div>
 
+
     <div class="model-info">
 
-      <h2>Upcoming 3D Model</h2>
+      <h2>
+        Upcoming 3D Model
+      </h2>
 
-      <p>New CNC Design Coming Soon</p>
+      <p>
+        New CNC Design Coming Soon
+      </p>
 
     </div>
+
   `;
 
+
   grid.appendChild(card);
+
 }
 
-/* ==================================================
-   ALL VIEWERS
-================================================== */
 
-const viewers = [];
+/* =========================================================
+   THREE.JS HELPERS
+========================================================= */
+
+const loader = new GLTFLoader();
+
+loader.setMeshoptDecoder(
+  MeshoptDecoder
+);
 
 
-/* ==================================================
-   CREATE THREE.JS VIEWER
-================================================== */
+const viewers = new Map();
 
-function createViewer(modelData, index) {
+
+function disposeMaterial(material) {
+
+  if (!material) return;
+
+
+  Object.keys(material).forEach((key) => {
+
+    const value = material[key];
+
+    if (
+      value &&
+      value.isTexture
+    ) {
+
+      value.dispose();
+
+    }
+
+  });
+
+
+  material.dispose();
+
+}
+
+
+function disposeObject(object) {
+
+  if (!object) return;
+
+
+  object.traverse((child) => {
+
+    if (child.geometry) {
+
+      child.geometry.dispose();
+
+    }
+
+
+    if (child.material) {
+
+      if (
+        Array.isArray(child.material)
+      ) {
+
+        child.material.forEach(
+          disposeMaterial
+        );
+
+      }
+
+      else {
+
+        disposeMaterial(
+          child.material
+        );
+
+      }
+
+    }
+
+  });
+
+}
+
+
+/* =========================================================
+   FIT MODEL TO CAMERA
+========================================================= */
+
+function fitModelToCamera(
+  model,
+  camera,
+  controls
+) {
+
+  model.updateMatrixWorld(true);
+
+
+  const box =
+    new THREE.Box3()
+      .setFromObject(model);
+
+
+  const size =
+    new THREE.Vector3();
+
+
+  const center =
+    new THREE.Vector3();
+
+
+  box.getSize(size);
+
+  box.getCenter(center);
+
+
+  /*
+    Move object center to world origin.
+  */
+
+  model.position.x -= center.x;
+
+  model.position.y -= center.y;
+
+  model.position.z -= center.z;
+
+
+  model.updateMatrixWorld(true);
+
+
+  /*
+    Recalculate size after rotation/centering.
+  */
+
+  const newBox =
+    new THREE.Box3()
+      .setFromObject(model);
+
+
+  newBox.getSize(size);
+
+
+  const maxDimension =
+    Math.max(
+      size.x,
+      size.y,
+      size.z
+    );
+
+
+  const fov =
+    camera.fov *
+    Math.PI /
+    180;
+
+
+  let cameraDistance =
+    maxDimension /
+    (
+      2 *
+      Math.tan(
+        fov / 2
+      )
+    );
+
+
+  /*
+    Add space around object.
+  */
+
+  cameraDistance *= 1.35;
+
+
+  if (
+    !Number.isFinite(cameraDistance) ||
+    cameraDistance <= 0
+  ) {
+
+    cameraDistance = 5;
+
+  }
+
+
+  camera.position.set(
+    0,
+    0,
+    cameraDistance
+  );
+
+
+  camera.near =
+    Math.max(
+      cameraDistance / 100,
+      0.001
+    );
+
+
+  camera.far =
+    Math.max(
+      cameraDistance * 100,
+      1000
+    );
+
+
+  camera.updateProjectionMatrix();
+
+
+  controls.target.set(
+    0,
+    0,
+    0
+  );
+
+
+  controls.minDistance =
+    cameraDistance * 0.18;
+
+
+  controls.maxDistance =
+    cameraDistance * 6;
+
+
+  controls.update();
+
+
+  return cameraDistance;
+
+}
+
+
+/* =========================================================
+   CREATE VIEWER
+========================================================= */
+
+function createViewer(
+  modelData,
+  index
+) {
+
+  /*
+    Prevent duplicate creation.
+  */
+
+  if (
+    viewers.has(index)
+  ) {
+
+    return viewers.get(index);
+
+  }
+
 
   const container =
-    document.getElementById(`viewer-${index}`);
+    document.getElementById(
+      `viewer-${index}`
+    );
 
-  const loadingText =
-    document.getElementById(`loading-${index}`);
+
+  const loading =
+    document.getElementById(
+      `loading-${index}`
+    );
 
 
-  /* SCENE */
+  if (!container) {
+
+    return null;
+
+  }
+
+
+  loading.innerHTML = `
+
+    <div class="spinner"></div>
+
+    <span>
+      Loading 3D Model...
+    </span>
+
+  `;
+
+
+  /* =========================
+     SCENE
+  ========================= */
 
   const scene =
     new THREE.Scene();
 
+
   scene.background =
-    new THREE.Color(0xeeeeea);
+    new THREE.Color(
+      0xeeeeea
+    );
 
 
-  /* CAMERA */
+  /* =========================
+     CAMERA
+  ========================= */
+
+  const width =
+    Math.max(
+      container.clientWidth,
+      1
+    );
+
+
+  const height =
+    Math.max(
+      container.clientHeight,
+      1
+    );
+
 
   const camera =
     new THREE.PerspectiveCamera(
       35,
-      container.clientWidth /
-      container.clientHeight,
+      width / height,
       0.01,
       1000
     );
+
 
   camera.position.set(
     0,
@@ -428,58 +1125,113 @@ function createViewer(modelData, index) {
   );
 
 
-  /* RENDERER */
+  /* =========================
+     RENDERER
+  ========================= */
 
-  const renderer =
-    new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: false
-    });
+  let renderer;
+
+
+  try {
+
+    renderer =
+      new THREE.WebGLRenderer({
+
+        antialias:
+          window.devicePixelRatio <= 2,
+
+        alpha: false,
+
+        powerPreference:
+          "high-performance"
+
+      });
+
+  }
+
+  catch (error) {
+
+    console.error(
+      "WebGL could not start:",
+      error
+    );
+
+
+    loading.classList.add(
+      "error"
+    );
+
+
+    loading.innerHTML = `
+      Your browser could not start the 3D viewer.
+    `;
+
+
+    return null;
+
+  }
+
+
+  /*
+    Mobile GPU protection:
+    Do not use unnecessarily high pixel ratio.
+  */
 
   renderer.setPixelRatio(
+
     Math.min(
-      window.devicePixelRatio,
-      2
+      window.devicePixelRatio || 1,
+      1.5
     )
+
   );
 
+
   renderer.setSize(
-    container.clientWidth,
-    container.clientHeight
+    width,
+    height,
+    false
   );
+
 
   renderer.outputColorSpace =
     THREE.SRGBColorSpace;
+
 
   container.appendChild(
     renderer.domElement
   );
 
 
-  /* LIGHTS */
+  /* =========================
+     LIGHTS
+  ========================= */
 
-  const ambientLight =
+  const ambient =
     new THREE.AmbientLight(
       0xffffff,
-      2.5
+      2.2
     );
 
+
   scene.add(
-    ambientLight
+    ambient
   );
 
 
   const light1 =
     new THREE.DirectionalLight(
       0xffffff,
-      3
+      2.7
     );
+
 
   light1.position.set(
     5,
     8,
     10
   );
+
 
   scene.add(
     light1
@@ -489,14 +1241,16 @@ function createViewer(modelData, index) {
   const light2 =
     new THREE.DirectionalLight(
       0xffffff,
-      2
+      1.7
     );
+
 
   light2.position.set(
     -5,
     3,
     5
   );
+
 
   scene.add(
     light2
@@ -506,8 +1260,9 @@ function createViewer(modelData, index) {
   const light3 =
     new THREE.DirectionalLight(
       0xffffff,
-      1.5
+      1
     );
+
 
   light3.position.set(
     0,
@@ -515,12 +1270,15 @@ function createViewer(modelData, index) {
     -5
   );
 
+
   scene.add(
     light3
   );
 
 
-  /* CONTROLS */
+  /* =========================
+     CONTROLS
+  ========================= */
 
   const controls =
     new OrbitControls(
@@ -528,7 +1286,6 @@ function createViewer(modelData, index) {
       renderer.domElement
     );
 
-  controls.zoomToCursor = true;
 
   controls.enableDamping = true;
 
@@ -538,182 +1295,313 @@ function createViewer(modelData, index) {
 
   controls.enableZoom = true;
 
-  controls.enablePan = true;
+  /*
+    Disable pan on cards.
+    This makes mobile interaction simpler.
+  */
+
+  controls.enablePan = false;
 
 
-  /* GLTF LOADER */
+  /*
+    Touch:
+    one finger = rotate
+    two fingers = zoom
+  */
 
-  const loader =
-    new GLTFLoader();
+  controls.touches.ONE =
+    THREE.TOUCH.ROTATE;
 
-  loader.setMeshoptDecoder(
-    MeshoptDecoder
+
+  controls.touches.TWO =
+    THREE.TOUCH.DOLLY_ROTATE;
+
+
+  /* =========================
+     VIEWER STATE
+  ========================= */
+
+  const viewer = {
+
+    index,
+
+    container,
+
+    scene,
+
+    camera,
+
+    renderer,
+
+    controls,
+
+    model: null,
+
+    modelData,
+
+    visible: true,
+
+    loaded: false,
+
+    needsRender: true,
+
+    frameId: null
+
+  };
+
+
+  viewers.set(
+    index,
+    viewer
   );
 
 
- /* LOAD MODEL */
+  /* =========================
+     RESIZE
+  ========================= */
 
-loader.load(
+  viewer.resize = function() {
 
-  modelData.file,
-
-  /* SUCCESS */
-
-  function(gltf) {
-
-    const model = gltf.scene;
+    const newWidth =
+      container.clientWidth;
 
 
-/* =========================================
-   FIX WRONG MODEL ORIENTATION
-========================================= */
-
-/* AADIYOGI + TORAN */
-if (
-  modelData.name === "Adiyogi Shiva 3D Model" ||
-  modelData.name === "Decorative Toran 3D Model"
-) {
-  model.rotation.x = Math.PI / 2;
-}
+    const newHeight =
+      container.clientHeight;
 
 
-/* TRISHUL */
-if (modelData.name === "Trishul 3D Model") {
-  model.rotation.y = Math.PI / 2;
-}
+    if (
+      newWidth <= 0 ||
+      newHeight <= 0
+    ) {
+
+      return;
+
+    }
 
 
-/* TODI */
-if (modelData.name === "Todi 3D Model") {
-  model.rotation.y = Math.PI / 2;
-}
-/* PEACOCK */
-if (modelData.name === "Peacock 3D Model") {
-    model.rotation.y = Math.PI / 2;
-}
+    camera.aspect =
+      newWidth /
+      newHeight;
 
 
-/* UPDATE */
-model.updateMatrixWorld(true);
-
-scene.add(model);
-      /* MODEL SIZE */
-
-      const box =
-        new THREE.Box3()
-        .setFromObject(model);
-
-      const size =
-        new THREE.Vector3();
-
-      const center =
-        new THREE.Vector3();
-
-      box.getSize(
-        size
-      );
-
-      box.getCenter(
-        center
-      );
+    camera.updateProjectionMatrix();
 
 
-      /* CENTER MODEL */
-
-      model.position.x -=
-        center.x;
-
-      model.position.y -=
-        center.y;
-
-      model.position.z -=
-        center.z;
+    renderer.setSize(
+      newWidth,
+      newHeight,
+      false
+    );
 
 
-      /* AUTO CAMERA FIT */
+    viewer.needsRender = true;
 
-      const maxDimension =
-        Math.max(
-          size.x,
-          size.y,
-          size.z
-        );
-
-      const fov =
-        camera.fov *
-        (Math.PI / 180);
-
-      let cameraDistance =
-        Math.abs(
-          maxDimension /
-          Math.sin(
-            fov / 2
-          )
-        );
-
-      cameraDistance *=
-        0.75;
+  };
 
 
-      camera.position.set(
-        0,
-        0,
-        cameraDistance
-      );
+  /* =========================
+     RENDER ONLY WHEN NEEDED
+  ========================= */
+
+  function renderLoop() {
+
+    if (!viewer.visible) {
+
+      viewer.frameId = null;
+
+      return;
+
+    }
 
 
-      camera.near =
-        Math.max(
-          cameraDistance / 100,
-          0.001
-        );
+    /*
+      update() returns true while damping
+      is still moving.
+    */
 
-      camera.far =
-        cameraDistance * 100;
-
-      camera.updateProjectionMatrix();
-
-
-      /* CONTROLS TARGET */
-
-      controls.target.set(
-        0,
-        0,
-        0
-      );
-
-      controls.minDistance =
-        cameraDistance * 0.20;
-
-      controls.maxDistance =
-        cameraDistance * 5;
-
+    const changed =
       controls.update();
 
 
-      loadingText.style.display =
+    if (
+      viewer.needsRender ||
+      changed
+    ) {
+
+      renderer.render(
+        scene,
+        camera
+      );
+
+
+      viewer.needsRender = false;
+
+    }
+
+
+    viewer.frameId =
+      requestAnimationFrame(
+        renderLoop
+      );
+
+  }
+
+
+  viewer.startRendering =
+    function() {
+
+      viewer.visible = true;
+
+
+      if (
+        viewer.frameId === null
+      ) {
+
+        viewer.frameId =
+          requestAnimationFrame(
+            renderLoop
+          );
+
+      }
+
+  };
+
+
+  viewer.stopRendering =
+    function() {
+
+      viewer.visible = false;
+
+
+      if (
+        viewer.frameId !== null
+      ) {
+
+        cancelAnimationFrame(
+          viewer.frameId
+        );
+
+
+        viewer.frameId = null;
+
+      }
+
+  };
+
+
+  controls.addEventListener(
+    "change",
+    () => {
+
+      viewer.needsRender = true;
+
+    }
+  );
+
+
+  /* =========================
+     LOAD GLB
+  ========================= */
+
+  loader.load(
+
+    modelData.file,
+
+
+    /* SUCCESS */
+
+    function(gltf) {
+
+      const model =
+        gltf.scene;
+
+
+      const rotation =
+        modelData.rotation ||
+        [0, 0, 0];
+
+
+      model.rotation.set(
+        rotation[0],
+        rotation[1],
+        rotation[2]
+      );
+
+
+      scene.add(
+        model
+      );
+
+
+      viewer.model =
+        model;
+
+
+      fitModelToCamera(
+        model,
+        camera,
+        controls
+      );
+
+
+      viewer.loaded = true;
+
+      viewer.needsRender = true;
+
+
+      loading.style.display =
         "none";
+
+
+      container.classList.add(
+        "loaded"
+      );
+
+
+      renderer.render(
+        scene,
+        camera
+      );
 
     },
 
 
-    /* LOADING */
+    /* PROGRESS */
 
     function(xhr) {
 
-      if (xhr.total) {
+      if (
+        xhr.total &&
+        xhr.total > 0
+      ) {
 
         const percent =
           Math.round(
-            (xhr.loaded /
-             xhr.total) *
-             100
+
+            (
+              xhr.loaded /
+              xhr.total
+            ) *
+
+            100
+
           );
 
-        loadingText.textContent =
-          "Loading 3D Model... " +
-          percent +
-          "%";
+
+        const text =
+          loading.querySelector(
+            "span"
+          );
+
+
+        if (text) {
+
+          text.textContent =
+            `Loading 3D Model... ${percent}%`;
+
+        }
+
       }
 
     },
@@ -729,159 +1617,461 @@ scene.add(model);
         error
       );
 
-      loadingText.textContent =
-        "3D Model could not be loaded";
+
+      loading.classList.add(
+        "error"
+      );
+
+
+      loading.innerHTML = `
+
+        <strong>
+          3D Model could not be loaded
+        </strong>
+
+        <span>
+          Please refresh or check your internet connection.
+        </span>
+
+      `;
 
     }
 
   );
 
 
-  /* ==================================================
-     CLICK FULLSCREEN
-  ================================================== */
+  /* =========================
+     EXPAND BUTTON
+  ========================= */
 
-  let pointerMoved = false;
+  const expandButton =
+    container.querySelector(
+      ".expand-btn"
+    );
 
-  let startX = 0;
 
-  let startY = 0;
+  expandButton.addEventListener(
 
+    "click",
 
-  renderer.domElement.addEventListener(
-    "pointerdown",
     function(event) {
 
-      pointerMoved = false;
+      event.preventDefault();
 
-      startX =
-        event.clientX;
-
-      startY =
-        event.clientY;
-
-    }
-  );
+      event.stopPropagation();
 
 
-  renderer.domElement.addEventListener(
-    "pointermove",
-    function(event) {
+      if (
+        viewer.loaded
+      ) {
 
-      const distance =
-        Math.abs(
-          event.clientX -
-          startX
-        ) +
-        Math.abs(
-          event.clientY -
-          startY
-        );
-
-      if (distance > 5) {
-
-        pointerMoved = true;
-
-      }
-
-    }
-  );
-
-
-  renderer.domElement.addEventListener(
-    "pointerup",
-    async function() {
-
-      /* User rotated model */
-      if (pointerMoved) {
-        return;
-      }
-
-      /* Already fullscreen */
-      if (document.fullscreenElement) {
-        return;
-      }
-
-      try {
-
-        await container.requestFullscreen();
-
-      }
-
-      catch(error) {
-
-        console.error(
-          "Fullscreen error:",
-          error
+        openModal(
+          viewer
         );
 
       }
 
     }
+
   );
 
 
-  /* ==================================================
-     RESIZE
-  ================================================== */
+  return viewer;
 
-  function resizeViewer() {
+}
 
-    const width =
-      container.clientWidth;
 
-    const height =
-      container.clientHeight;
+/* =========================================================
+   LAZY LOAD
+   Models only start when they approach screen.
+========================================================= */
 
-    if (
-      width === 0 ||
-      height === 0
-    ) {
-      return;
+const lazyObserver =
+  new IntersectionObserver(
+
+    (entries) => {
+
+      entries.forEach(
+        (entry) => {
+
+          const container =
+            entry.target;
+
+
+          const index =
+            Number(
+              container.dataset.index
+            );
+
+
+          /*
+            First time near viewport:
+            create renderer + download model.
+          */
+
+          if (
+            entry.isIntersecting &&
+            !viewers.has(index)
+          ) {
+
+            createViewer(
+              models[index],
+              index
+            );
+
+          }
+
+
+          const viewer =
+            viewers.get(index);
+
+
+          if (!viewer) {
+
+            return;
+
+          }
+
+
+          /*
+            Render only while card is visible.
+          */
+
+          if (
+            entry.isIntersecting
+          ) {
+
+            viewer.startRendering();
+
+            viewer.resize();
+
+          }
+
+          else {
+
+            viewer.stopRendering();
+
+          }
+
+        }
+      );
+
+    },
+
+    {
+
+      /*
+        Begin loading slightly before
+        user reaches the card.
+      */
+
+      rootMargin:
+        "250px 0px 250px 0px",
+
+      threshold: 0.01
+
     }
 
-    camera.aspect =
-      width / height;
+  );
 
-    camera.updateProjectionMatrix();
 
-    renderer.setPixelRatio(
-      Math.min(
-        window.devicePixelRatio,
-        2
-      )
-    );
+document
+  .querySelectorAll(".viewer")
+  .forEach(
+    (viewer) => {
 
-    renderer.setSize(
-      width,
-      height,
-      false
-    );
+      lazyObserver.observe(
+        viewer
+      );
+
+    }
+  );
+
+
+/* =========================================================
+   MODAL VIEWER
+   Works on mobile without depending on Fullscreen API.
+========================================================= */
+
+const modal =
+  document.getElementById(
+    "modelModal"
+  );
+
+
+const modalViewer =
+  document.getElementById(
+    "modalViewer"
+  );
+
+
+const modalClose =
+  document.getElementById(
+    "modalClose"
+  );
+
+
+const modalTitle =
+  document.getElementById(
+    "modalTitle"
+  );
+
+
+let modalState =
+  null;
+
+
+/* =========================
+   OPEN MODAL
+========================= */
+
+function openModal(
+  sourceViewer
+) {
+
+  if (
+    !sourceViewer.model
+  ) {
+
+    return;
 
   }
 
 
-  /* STORE VIEWER */
-
-  viewers.push({
-    container,
-    scene,
-    camera,
-    renderer,
-    controls,
-    resizeViewer
-  });
+  modal.classList.add(
+    "active"
+  );
 
 
-  /* ANIMATION */
+  modal.setAttribute(
+    "aria-hidden",
+    "false"
+  );
 
-  function animate() {
 
-    requestAnimationFrame(
-      animate
+  document.body.classList.add(
+    "modal-open"
+  );
+
+
+  modalTitle.textContent =
+    sourceViewer.modelData.name;
+
+
+  /*
+    Use a second scene in expanded mode.
+    Clone the already downloaded model.
+    No second network download.
+  */
+
+  const scene =
+    new THREE.Scene();
+
+
+  scene.background =
+    new THREE.Color(
+      0xeeeeea
     );
 
+
+  const width =
+    window.innerWidth;
+
+
+  const height =
+    window.innerHeight;
+
+
+  const camera =
+    new THREE.PerspectiveCamera(
+      35,
+      width / height,
+      0.01,
+      1000
+    );
+
+
+  const renderer =
+    new THREE.WebGLRenderer({
+
+      antialias:
+        window.devicePixelRatio <= 2,
+
+      powerPreference:
+        "high-performance"
+
+    });
+
+
+  renderer.setPixelRatio(
+
+    Math.min(
+      window.devicePixelRatio || 1,
+      1.5
+    )
+
+  );
+
+
+  renderer.setSize(
+    width,
+    height,
+    false
+  );
+
+
+  renderer.outputColorSpace =
+    THREE.SRGBColorSpace;
+
+
+  modalViewer.innerHTML =
+    "";
+
+
+  modalViewer.appendChild(
+    renderer.domElement
+  );
+
+
+  const ambient =
+    new THREE.AmbientLight(
+      0xffffff,
+      2.2
+    );
+
+
+  scene.add(
+    ambient
+  );
+
+
+  const light1 =
+    new THREE.DirectionalLight(
+      0xffffff,
+      2.7
+    );
+
+
+  light1.position.set(
+    5,
+    8,
+    10
+  );
+
+
+  scene.add(
+    light1
+  );
+
+
+  const light2 =
+    new THREE.DirectionalLight(
+      0xffffff,
+      1.7
+    );
+
+
+  light2.position.set(
+    -5,
+    3,
+    5
+  );
+
+
+  scene.add(
+    light2
+  );
+
+
+  const light3 =
+    new THREE.DirectionalLight(
+      0xffffff,
+      1
+    );
+
+
+  light3.position.set(
+    0,
+    -5,
+    -5
+  );
+
+
+  scene.add(
+    light3
+  );
+
+
+  /*
+    clone(true) reuses geometry/material resources.
+    We therefore do NOT dispose those shared resources
+    when closing modal.
+  */
+
+  const model =
+    sourceViewer.model.clone(true);
+
+
+  scene.add(
+    model
+  );
+
+
+  const controls =
+    new OrbitControls(
+      camera,
+      renderer.domElement
+    );
+
+
+  controls.enableDamping =
+    true;
+
+
+  controls.dampingFactor =
+    0.08;
+
+
+  controls.enableRotate =
+    true;
+
+
+  controls.enableZoom =
+    true;
+
+
+  controls.enablePan =
+    true;
+
+
+  controls.touches.ONE =
+    THREE.TOUCH.ROTATE;
+
+
+  controls.touches.TWO =
+    THREE.TOUCH.DOLLY_PAN;
+
+
+  fitModelToCamera(
+    model,
+    camera,
+    controls
+  );
+
+
+  let frameId;
+
+
+  function animateModal() {
+
+    frameId =
+      requestAnimationFrame(
+        animateModal
+      );
+
+
     controls.update();
+
 
     renderer.render(
       scene,
@@ -890,72 +2080,330 @@ scene.add(model);
 
   }
 
-  animate();
+
+  animateModal();
+
+
+  modalState = {
+
+    sourceViewer,
+
+    scene,
+
+    camera,
+
+    renderer,
+
+    controls,
+
+    model,
+
+    frameId
+
+  };
+
+
+  /*
+    Try real fullscreen when browser supports it.
+    Modal still works even if this fails.
+  */
+
+  if (
+    modal.requestFullscreen &&
+    !document.fullscreenElement
+  ) {
+
+    modal
+      .requestFullscreen()
+      .catch(
+        () => {
+
+          /*
+            Ignore.
+            CSS modal is already fullscreen.
+          */
+
+        }
+      );
+
+  }
 
 }
 
 
-/* ==================================================
-   START ALL 9 MODELS
-================================================== */
+/* =========================================================
+   CLOSE MODAL
+========================================================= */
 
-models.forEach(function(modelData, index) {
+async function closeModal() {
 
-  createViewer(
-    modelData,
-    index
-  );
+  if (
+    !modal.classList.contains(
+      "active"
+    )
+  ) {
 
-});
-
-
-/* ==================================================
-   NORMAL WINDOW RESIZE
-================================================== */
-
-window.addEventListener(
-  "resize",
-  function() {
-
-    viewers.forEach(
-      function(viewer) {
-
-        viewer.resizeViewer();
-
-      }
-    );
+    return;
 
   }
+
+
+  modal.classList.remove(
+    "active"
+  );
+
+
+  modal.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+
+  document.body.classList.remove(
+    "modal-open"
+  );
+
+
+  if (modalState) {
+
+    cancelAnimationFrame(
+      modalState.frameId
+    );
+
+
+    modalState.controls.dispose();
+
+
+    /*
+      Do NOT dispose cloned model's
+      geometry/material because it shares
+      them with the card viewer.
+    */
+
+    modalState.renderer.dispose();
+
+
+    modalState.renderer.forceContextLoss();
+
+
+    modalViewer.innerHTML =
+      "";
+
+
+    modalState =
+      null;
+
+  }
+
+
+  if (
+    document.fullscreenElement
+  ) {
+
+    try {
+
+      await document.exitFullscreen();
+
+    }
+
+    catch (error) {
+
+      /*
+        Nothing required.
+      */
+
+    }
+
+  }
+
+}
+
+
+modalClose.addEventListener(
+  "click",
+  closeModal
 );
 
 
-/* ==================================================
-   FULLSCREEN RESIZE
-================================================== */
+document.addEventListener(
+
+  "keydown",
+
+  function(event) {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      closeModal();
+
+    }
+
+  }
+
+);
+
+
+/* =========================================================
+   MODAL FULLSCREEN EXIT
+========================================================= */
 
 document.addEventListener(
+
   "fullscreenchange",
+
+  function() {
+
+    /*
+      If user exits browser fullscreen manually,
+      keep CSS modal available.
+
+      Close button can still close it normally.
+    */
+
+    if (
+      modalState
+    ) {
+
+      resizeModal();
+
+    }
+
+  }
+
+);
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+function resizeModal() {
+
+  if (
+    !modalState
+  ) {
+
+    return;
+
+  }
+
+
+  const width =
+    window.innerWidth;
+
+
+  const height =
+    window.innerHeight;
+
+
+  modalState.camera.aspect =
+    width /
+    height;
+
+
+  modalState.camera
+    .updateProjectionMatrix();
+
+
+  modalState.renderer
+    .setSize(
+      width,
+      height,
+      false
+    );
+
+}
+
+
+let resizeTimer;
+
+
+window.addEventListener(
+
+  "resize",
+
+  function() {
+
+    clearTimeout(
+      resizeTimer
+    );
+
+
+    resizeTimer =
+      setTimeout(
+        () => {
+
+          viewers.forEach(
+            (viewer) => {
+
+              if (
+                viewer.visible
+              ) {
+
+                viewer.resize();
+
+              }
+
+            }
+          );
+
+
+          resizeModal();
+
+        },
+
+        100
+
+      );
+
+  }
+
+);
+
+
+/* =========================================================
+   ORIENTATION CHANGE - MOBILE
+========================================================= */
+
+window.addEventListener(
+
+  "orientationchange",
+
   function() {
 
     setTimeout(
-      function() {
+      () => {
 
         viewers.forEach(
-          function(viewer) {
+          (viewer) => {
 
-            viewer.resizeViewer();
+            if (
+              viewer.visible
+            ) {
+
+              viewer.resize();
+
+            }
 
           }
         );
 
+
+        resizeModal();
+
       },
-      100
+
+      250
+
     );
 
   }
+
 );
 
 </script>
+
 
 </body>
 </html>
