@@ -31,7 +31,6 @@
 
         .outcut-top h1 {
             margin: 15px 0 25px;
-
             font-size: clamp(55px, 6vw, 100px);
             line-height: .92;
             letter-spacing: -4px;
@@ -64,7 +63,7 @@
         }
 
 
-        /* PHOTO NEVER CROPS */
+        /* ===== PHOTO NEVER CROPS ===== */
 
         .outcut-card img {
             width: 240px !important;
@@ -79,10 +78,12 @@
             display: block !important;
 
             background: #111;
+
+            cursor: zoom-in;
         }
 
 
-        /* TITLE */
+        /* ===== TITLE ===== */
 
         .outcut-card-title {
             display: flex;
@@ -103,17 +104,76 @@
         }
 
 
-        /* DESCRIPTION */
+        /* ===== DESCRIPTION ===== */
 
         .outcut-card p {
             margin-top: 9px;
-
             font-size: 13px;
             line-height: 1.45;
         }
 
 
-        /* TABLET */
+        /* =========================================
+           FULL SCREEN IMAGE
+        ========================================= */
+
+        .image-lightbox {
+            display: none;
+
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.95);
+
+            z-index: 99999;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 25px;
+        }
+
+        .image-lightbox.active {
+            display: flex;
+        }
+
+        .image-lightbox img {
+            width: auto !important;
+            height: auto !important;
+
+            max-width: 95vw !important;
+            max-height: 92vh !important;
+
+            object-fit: contain !important;
+
+            background: transparent !important;
+
+            cursor: default;
+        }
+
+        .lightbox-close {
+            position: absolute;
+
+            top: 20px;
+            right: 30px;
+
+            color: white;
+
+            font-size: 50px;
+            font-family: Arial, sans-serif;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            z-index: 100000;
+        }
+
+
+        /* ===== TABLET ===== */
 
         @media (max-width: 1050px) {
 
@@ -129,10 +189,11 @@
             .outcut-card img {
                 height: 220px !important;
             }
+
         }
 
 
-        /* MOBILE */
+        /* ===== MOBILE ===== */
 
         @media (max-width: 750px) {
 
@@ -153,6 +214,23 @@
             .outcut-card img {
                 height: 155px !important;
             }
+
+            /* Fullscreen photo mobile fix */
+
+            .image-lightbox img {
+                width: auto !important;
+                height: auto !important;
+
+                max-width: 95vw !important;
+                max-height: 90vh !important;
+            }
+
+            .lightbox-close {
+                top: 15px;
+                right: 20px;
+                font-size: 45px;
+            }
+
         }
 
     </style>
@@ -163,7 +241,7 @@
 <body class="inner-page">
 
 
-    <!-- SAME TOP BAR -->
+    <!-- ================= HEADER ================= -->
 
     <header class="header inner-header">
 
@@ -172,10 +250,23 @@
         </a>
 
         <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#about">About</a>
-            <a href="index.html#cnc-portfolio" class="active">Portfolio</a>
-            <a href="index.html#contact">Contact</a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#cnc-portfolio" class="active">
+                Portfolio
+            </a>
+
+            <a href="index.html#contact">
+                Contact
+            </a>
+
         </nav>
 
         <a href="index.html#contact" class="quote-link">
@@ -185,11 +276,18 @@
     </header>
 
 
+    <!-- ================= OUTCUT PAGE ================= -->
+
     <main class="outcut-page">
+
+
+        <!-- ===== TOP ===== -->
 
         <div class="outcut-top">
 
-            <small>DHYANA ENGRAVE / PORTFOLIO</small>
+            <small>
+                DHYANA ENGRAVE / PORTFOLIO
+            </small>
 
             <h1>
                 Out Cut<br>
@@ -204,11 +302,21 @@
         </div>
 
 
+        <!-- ================= GALLERY ================= -->
+
         <div class="outcut-gallery">
 
 
+            <!-- ================= 01 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-1.webp" alt="Out Cut Design 01">
+
+                <img
+                    src="gallery/outcut/outcut-1.webp"
+                    alt="Out Cut Design 01"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>Custom 3D Model</h3>
@@ -219,11 +327,20 @@
                     Detailed standalone 3D model created for precision CNC
                     machining and fabrication.
                 </p>
+
             </div>
 
 
+            <!-- ================= 02 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-2.webp" alt="Out Cut Design 02">
+
+                <img
+                    src="gallery/outcut/outcut-2.webp"
+                    alt="Out Cut Design 02"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>Decorative 3D Model</h3>
@@ -234,11 +351,20 @@
                     Decorative 3D artwork prepared for CNC carving and
                     custom production.
                 </p>
+
             </div>
 
 
+            <!-- ================= 03 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-3.webp" alt="Out Cut Design 03">
+
+                <img
+                    src="gallery/outcut/outcut-3.webp"
+                    alt="Out Cut Design 03"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>Sculptural Model</h3>
@@ -249,11 +375,20 @@
                     Precision sculptural model developed for CNC machining
                     and fabrication.
                 </p>
+
             </div>
 
 
+            <!-- ================= 04 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-4.webp" alt="Out Cut Design 04">
+
+                <img
+                    src="gallery/outcut/outcut-4.webp"
+                    alt="Out Cut Design 04"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>Ornamental Model</h3>
@@ -264,11 +399,20 @@
                     Detailed ornamental artwork created for decorative CNC
                     applications.
                 </p>
+
             </div>
 
 
+            <!-- ================= 05 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-5.webp" alt="Out Cut Design 05">
+
+                <img
+                    src="gallery/outcut/outcut-5.webp"
+                    alt="Out Cut Design 05"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>CNC Ready Model</h3>
@@ -278,11 +422,20 @@
                 <p>
                     Production-ready model optimized for accurate CNC machining.
                 </p>
+
             </div>
 
 
+            <!-- ================= 06 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-6.webp" alt="Out Cut Design 06">
+
+                <img
+                    src="gallery/outcut/outcut-6.webp"
+                    alt="Out Cut Design 06"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>Architectural Element</h3>
@@ -292,11 +445,20 @@
                 <p>
                     Architectural 3D element designed for carving and fabrication.
                 </p>
+
             </div>
 
 
+            <!-- ================= 07 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-7.webp" alt="Out Cut Design 07">
+
+                <img
+                    src="gallery/outcut/outcut-7.webp"
+                    alt="Out Cut Design 07"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>Out Cut Design</h3>
@@ -306,11 +468,20 @@
                 <p>
                     Standalone detailed model prepared for precision CNC work.
                 </p>
+
             </div>
 
 
+            <!-- ================= 08 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-8.webp" alt="Out Cut Design 08">
+
+                <img
+                    src="gallery/outcut/outcut-8.webp"
+                    alt="Out Cut Design 08"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>Carving Model</h3>
@@ -320,11 +491,20 @@
                 <p>
                     Custom model developed for wood, stone and CNC carving.
                 </p>
+
             </div>
 
 
+            <!-- ================= 09 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-9.webp" alt="Out Cut Design 09">
+
+                <img
+                    src="gallery/outcut/outcut-9.webp"
+                    alt="Out Cut Design 09"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>3D Sculpture</h3>
@@ -334,11 +514,20 @@
                 <p>
                     Detailed digital sculpture optimized for CNC production.
                 </p>
+
             </div>
 
 
+            <!-- ================= 10 ================= -->
+
             <div class="outcut-card">
-                <img src="gallery/outcut/outcut-10.webp" alt="Out Cut Design 10">
+
+                <img
+                    src="gallery/outcut/outcut-10.webp"
+                    alt="Out Cut Design 10"
+                    loading="lazy"
+                    decoding="async"
+                >
 
                 <div class="outcut-card-title">
                     <h3>Custom CNC Model</h3>
@@ -348,6 +537,7 @@
                 <p>
                     Custom standalone 3D model prepared for accurate CNC machining.
                 </p>
+
             </div>
 
 
@@ -355,5 +545,115 @@
 
     </main>
 
+
+    <!-- =========================================
+         FULL SCREEN IMAGE
+    ========================================== -->
+
+    <div class="image-lightbox" id="imageLightbox">
+
+        <span
+            class="lightbox-close"
+            id="lightboxClose"
+        >
+            &times;
+        </span>
+
+        <img
+            id="fullscreenImage"
+            src=""
+            alt="Full Screen Design"
+        >
+
+    </div>
+
+
+    <!-- =========================================
+         LIGHTBOX SCRIPT
+    ========================================== -->
+
+    <script>
+
+        const galleryImages =
+            document.querySelectorAll(".outcut-card img");
+
+        const imageLightbox =
+            document.getElementById("imageLightbox");
+
+        const fullscreenImage =
+            document.getElementById("fullscreenImage");
+
+        const lightboxClose =
+            document.getElementById("lightboxClose");
+
+
+        /* ===== OPEN FULL SCREEN ===== */
+
+        galleryImages.forEach(function(image) {
+
+            image.addEventListener("click", function() {
+
+                fullscreenImage.src = this.src;
+
+                fullscreenImage.alt = this.alt;
+
+                imageLightbox.classList.add("active");
+
+                document.body.style.overflow = "hidden";
+
+            });
+
+        });
+
+
+        /* ===== CLOSE BUTTON ===== */
+
+        lightboxClose.addEventListener("click", function(event) {
+
+            event.stopPropagation();
+
+            imageLightbox.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        });
+
+
+        /* ===== CLICK BLACK BACKGROUND ===== */
+
+        imageLightbox.addEventListener("click", function(event) {
+
+            if (event.target === imageLightbox) {
+
+                imageLightbox.classList.remove("active");
+
+                document.body.style.overflow = "";
+
+            }
+
+        });
+
+
+        /* ===== ESC KEY ===== */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (
+                event.key === "Escape" &&
+                imageLightbox.classList.contains("active")
+            ) {
+
+                imageLightbox.classList.remove("active");
+
+                document.body.style.overflow = "";
+
+            }
+
+        });
+
+    </script>
+
+
 </body>
+
 </html>

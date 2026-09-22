@@ -8,9 +8,56 @@
     <title>Murti Designs | Dhyana Engrave</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ================= FULL SCREEN IMAGE ================= */
+
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .image-lightbox.active {
+            display: flex;
+        }
+
+        .image-lightbox img {
+            max-width: 95vw;
+            max-height: 92vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 50px;
+            font-family: Arial, sans-serif;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 100000;
+        }
+
+        .category-image img {
+            cursor: zoom-in;
+        }
+    </style>
+
 </head>
 
 <body class="inner-page">
+
 
     <!-- ================= HEADER ================= -->
 
@@ -62,160 +109,371 @@
 
         <div class="category-grid">
 
-            <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/Murti-1.webp" alt="Krishna 3D Relief">
-    </div>
 
-    <div class="category-item-heading">
-        <h3>Krishna 3D Relief</h3>
-        <span>01</span>
-    </div>
-
-    <p>
-        Detailed devotional 3D relief sculpt designed for CNC carving
-        in wood, stone and decorative applications.
-    </p>
-</div>
+            <!-- ================= 01 ================= -->
 
             <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/murti-2.webp" alt="Krishna 3D Relief">
-    </div>
 
-    <div class="category-item-heading">
-        <h3>Ganesha 3D Sculpture</h3>
-        <span>02</span>
-    </div>
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/Murti-1.webp"
+                        alt="Krishna 3D Relief"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
 
-    <p>
-        Detailed Lord Ganesha 3D model prepared for devotional CNC carving and decorative work.
-    </p>
-</div>
+                <div class="category-item-heading">
+                    <h3>Krishna 3D Relief</h3>
+                    <span>01</span>
+                </div>
 
-           <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/murti-3.webp" alt="Krishna 3D Relief">
-    </div>
+                <p>
+                    Detailed devotional 3D relief sculpt designed for CNC carving
+                    in wood, stone and decorative applications.
+                </p>
 
-    <div class="category-item-heading">
-        <h3>Buddha 3D Relief</h3>
-        <span>03</span>
-    </div>
+            </div>
 
-    <p>
-       Peaceful Buddha relief artwork designed for stone, wood and decorative CNC panels.
-    </p>
-</div>
 
-           <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/murti-4.webp" alt="Krishna 3D Relief">
-    </div>
+            <!-- ================= 02 ================= -->
 
-    <div class="category-item-heading">
-        <h3>Meditative Face Panel</h3>
-        <span>04</span>
-    </div>
+            <div class="category-item">
 
-    <p>
-        Contemporary three-face relief composition created for decorative CNC wall applications.
-    </p>
-</div>
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/murti-2.webp"
+                        alt="Ganesha 3D Sculpture"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
 
-          <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/murti-5.webp" alt="Krishna 3D Relief">
-    </div>
+                <div class="category-item-heading">
+                    <h3>Ganesha 3D Sculpture</h3>
+                    <span>02</span>
+                </div>
 
-    <div class="category-item-heading">
-        <h3>Devotional 3D Sculpture</h3>
-        <span>05</span>
-    </div>
+                <p>
+                    Detailed Lord Ganesha 3D model prepared for devotional
+                    CNC carving and decorative work.
+                </p>
 
-    <p>
-        Detailed seated devotional figure modeled for CNC carving and custom architectural projects.
-    </p>
-</div>
+            </div>
 
-           <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/murti-6.webp" alt="Krishna 3D Relief">
-    </div>
 
-    <div class="category-item-heading">
-        <h3>Abstract Face Relief</h3>
-        <span>06</span>
-    </div>
+            <!-- ================= 03 ================= -->
 
-    <p>
-        Modern three-face sculptural panel designed for decorative CNC production.
-    </p>
-</div>
-           <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/murti-7.webp" alt="Krishna 3D Relief">
-    </div>
+            <div class="category-item">
 
-    <div class="category-item-heading">
-        <h3>Lion Family 3D Model</h3>
-        <span>07</span>
-    </div>
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/murti-3.webp"
+                        alt="Buddha 3D Relief"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
 
-    <p>
-        Detailed lion composition sculpted for CNC carving, wall décor and custom fabrication.
-    </p>
-</div>
+                <div class="category-item-heading">
+                    <h3>Buddha 3D Relief</h3>
+                    <span>03</span>
+                </div>
 
-           <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/murti-8.webp" alt="Krishna 3D Relief">
-    </div>
+                <p>
+                    Peaceful Buddha relief artwork designed for stone,
+                    wood and decorative CNC panels.
+                </p>
 
-    <div class="category-item-heading">
-        <h3>Traditional Devotional Relieff</h3>
-        <span>08</span>
-    </div>
+            </div>
 
-    <p>
-        Ornamental figurative relief with detailed borders prepared for CNC carving.
-    </p>
-</div>
 
-           <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/murti-9.webp" alt="Krishna 3D Relief">
-    </div>
+            <!-- ================= 04 ================= -->
 
-    <div class="category-item-heading">
-        <h3>Devi 3D Relief</h3>
-        <span>09</span>
-    </div>
+            <div class="category-item">
 
-    <p>
-        Detailed goddess relief composition designed for devotional and decorative CNC applications.
-    </p>
-</div>
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/murti-4.webp"
+                        alt="Meditative Face Panel"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
 
-           <div class="category-item">
-    <div class="category-image">
-        <img src="gallery/Murti/murti-10.webp" alt="Krishna 3D Relief">
-    </div>
+                <div class="category-item-heading">
+                    <h3>Meditative Face Panel</h3>
+                    <span>04</span>
+                </div>
 
-    <div class="category-item-heading">
-        <h3>Shiva 3D Relief</h3>
-        <span>010</span>
-    </div>
+                <p>
+                    Contemporary three-face relief composition created
+                    for decorative CNC wall applications.
+                </p>
 
-    <p>
-        Detailed Lord Shiva relief artwork modeled for CNC carving in wood, stone and other materials.
-    </p>
-</div>
+            </div>
 
-           
+
+            <!-- ================= 05 ================= -->
+
+            <div class="category-item">
+
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/murti-5.webp"
+                        alt="Devotional 3D Sculpture"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+
+                <div class="category-item-heading">
+                    <h3>Devotional 3D Sculpture</h3>
+                    <span>05</span>
+                </div>
+
+                <p>
+                    Detailed seated devotional figure modeled for CNC carving
+                    and custom architectural projects.
+                </p>
+
+            </div>
+
+
+            <!-- ================= 06 ================= -->
+
+            <div class="category-item">
+
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/murti-6.webp"
+                        alt="Abstract Face Relief"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+
+                <div class="category-item-heading">
+                    <h3>Abstract Face Relief</h3>
+                    <span>06</span>
+                </div>
+
+                <p>
+                    Modern three-face sculptural panel designed
+                    for decorative CNC production.
+                </p>
+
+            </div>
+
+
+            <!-- ================= 07 ================= -->
+
+            <div class="category-item">
+
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/murti-7.webp"
+                        alt="Lion Family 3D Model"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+
+                <div class="category-item-heading">
+                    <h3>Lion Family 3D Model</h3>
+                    <span>07</span>
+                </div>
+
+                <p>
+                    Detailed lion composition sculpted for CNC carving,
+                    wall décor and custom fabrication.
+                </p>
+
+            </div>
+
+
+            <!-- ================= 08 ================= -->
+
+            <div class="category-item">
+
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/murti-8.webp"
+                        alt="Traditional Devotional Relief"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+
+                <div class="category-item-heading">
+                    <h3>Traditional Devotional Relief</h3>
+                    <span>08</span>
+                </div>
+
+                <p>
+                    Ornamental figurative relief with detailed borders
+                    prepared for CNC carving.
+                </p>
+
+            </div>
+
+
+            <!-- ================= 09 ================= -->
+
+            <div class="category-item">
+
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/murti-9.webp"
+                        alt="Devi 3D Relief"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+
+                <div class="category-item-heading">
+                    <h3>Devi 3D Relief</h3>
+                    <span>09</span>
+                </div>
+
+                <p>
+                    Detailed goddess relief composition designed
+                    for devotional and decorative CNC applications.
+                </p>
+
+            </div>
+
+
+            <!-- ================= 10 ================= -->
+
+            <div class="category-item">
+
+                <div class="category-image">
+                    <img
+                        src="gallery/Murti/murti-10.webp"
+                        alt="Shiva 3D Relief"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+
+                <div class="category-item-heading">
+                    <h3>Shiva 3D Relief</h3>
+                    <span>10</span>
+                </div>
+
+                <p>
+                    Detailed Lord Shiva relief artwork modeled for CNC carving
+                    in wood, stone and other materials.
+                </p>
+
+            </div>
+
+
         </div>
 
     </main>
 
+
+    <!-- ================= FULL SCREEN IMAGE ================= -->
+
+    <div class="image-lightbox" id="imageLightbox">
+
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+
+        <img
+            id="fullscreenImage"
+            src=""
+            alt="Full Screen Design"
+        >
+
+    </div>
+
+
+    <!-- ================= LIGHTBOX SCRIPT ================= -->
+
+    <script>
+
+        const galleryImages =
+            document.querySelectorAll(".category-image img");
+
+        const imageLightbox =
+            document.getElementById("imageLightbox");
+
+        const fullscreenImage =
+            document.getElementById("fullscreenImage");
+
+        const lightboxClose =
+            document.getElementById("lightboxClose");
+
+
+        /* OPEN IMAGE */
+
+        galleryImages.forEach(function(image) {
+
+            image.addEventListener("click", function() {
+
+                fullscreenImage.src = this.src;
+
+                fullscreenImage.alt = this.alt;
+
+                imageLightbox.classList.add("active");
+
+                document.body.style.overflow = "hidden";
+
+            });
+
+        });
+
+
+        /* CLOSE BUTTON */
+
+        lightboxClose.addEventListener("click", function(event) {
+
+            event.stopPropagation();
+
+            imageLightbox.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        });
+
+
+        /* CLICK BLACK BACKGROUND TO CLOSE */
+
+        imageLightbox.addEventListener("click", function(event) {
+
+            if (event.target === imageLightbox) {
+
+                imageLightbox.classList.remove("active");
+
+                document.body.style.overflow = "";
+
+            }
+
+        });
+
+
+        /* ESC KEY TO CLOSE */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (
+                event.key === "Escape" &&
+                imageLightbox.classList.contains("active")
+            ) {
+
+                imageLightbox.classList.remove("active");
+
+                document.body.style.overflow = "";
+
+            }
+
+        });
+
+    </script>
+
+
 </body>
+
 </html>

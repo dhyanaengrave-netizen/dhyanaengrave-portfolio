@@ -5,212 +5,433 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>3D Model Designs | Dhyana Engrave</title>
+    <title>Architectural 3D Models | Dhyana Engrave</title>
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f2eb;
+            color: #4a281b;
+        }
+
+        .gallery-section {
+            max-width: 1400px;
+            margin: auto;
+            padding: 60px 30px 80px;
+        }
+
+        .gallery-section h1 {
+            text-align: center;
+            font-size: 48px;
+            margin: 0 0 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 18px;
+            margin: 0 0 50px;
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .model-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.10);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .model-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.16);
+        }
+
+        .model-image {
+            width: 100%;
+            height: 380px;
+            background: #e5e2dc;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .model-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.4s ease;
+        }
+
+        .model-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .model-info {
+            padding: 18px;
+        }
+
+        .model-info h2 {
+            margin: 0 0 7px;
+            font-size: 21px;
+        }
+
+        .model-info p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+
+        /* FULL SCREEN IMAGE */
+
+        .lightbox {
+            display: none;
+
+            position: fixed;
+            inset: 0;
+
+            z-index: 9999;
+
+            background: rgba(0,0,0,0.92);
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 95vw;
+            max-height: 92vh;
+            object-fit: contain;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 30px;
+            top: 20px;
+
+            color: white;
+            font-size: 45px;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+
+        @media (max-width: 1000px) {
+
+            .model-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .gallery-section {
+                padding: 40px 20px;
+            }
+
+            .gallery-section h1 {
+                font-size: 36px;
+            }
+
+            .model-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
 </head>
 
-<body class="inner-page">
 
-    <header class="header inner-header">
-
-        <a href="index.html" class="brand">
-            Dhyana Engrave
-        </a>
-
-        <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#about">About</a>
-            <a href="index.html#cnc-portfolio" class="active">Portfolio</a>
-            <a href="index.html#contact">Contact</a>
-        </nav>
-
-        <a href="index.html#contact" class="quote-link">
-            Free Quote
-        </a>
-
-    </header>
+<body>
 
 
-    <main class="category-page">
+<section class="gallery-section">
 
-        <div class="category-heading">
+    <h1>Architectural 3D Models</h1>
 
-            <p>DHYANA ENGRAVE / PORTFOLIO</p>
+    <p class="subtitle">
+        Decorative and architectural 3D designs for CNC production
+    </p>
 
-            <h1>Architectural<br>3D Models</h1>
 
-            <div class="category-heading-bottom">
+    <div class="model-grid">
 
-                <p>
-                    A collection of detailed 3D architectural and decorative
-                    models created for CNC production and custom fabrication.
-                </p>
 
-                <a href="index.html#cnc-portfolio">
-                    ← Back to Portfolio
-                </a>
+        <!-- MODEL 01 -->
 
+        <div class="model-card">
+
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-1.webp"
+                     alt="Decorative 3D Panel">
+            </div>
+
+            <div class="model-info">
+                <h2>Decorative 3D Panel</h2>
+                <p>Ornamental CNC-ready architectural design</p>
             </div>
 
         </div>
 
 
-        <div class="category-grid">
+        <!-- MODEL 02 -->
 
-            <div class="category-item">
+        <div class="model-card">
 
-    <img src="gallery/outcut/outcut-1.webp" alt="Classic Ornamental Panel">
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-2.webp"
+                     alt="Floral 3D Panel">
+            </div>
 
-    <div class="category-item-heading">
-        <h3>Classic Ornamental Panel</h3>
-        <span>01</span>
-    </div>
+            <div class="model-info">
+                <h2>Floral 3D Panel</h2>
+                <p>Detailed floral relief design for CNC carving</p>
+            </div>
 
-    <p>
-        Symmetrical ornamental 3D panel with detailed scrollwork,
-        designed for decorative CNC carving and interiors.
-    </p>
-
-</div>
-
-            <div class="category-item">
-
-    <img src="gallery/outcut/outcut-2.webp" alt="Floral Relief Panel">
-
-    <div class="category-item-heading">
-        <h3>Floral Relief Panel</h3>
-        <span>02</span>
-    </div>
-
-    <p>
-        Elegant floral relief featuring layered flowers and leaves,
-        created for CNC wall and furniture decoration.
-    </p>
-
-</div>
-           <div class="category-item">
-
-    <img src="gallery/outcut/outcut-3.webp" alt="Classic Ornamental Panel">
-
-    <div class="category-item-heading">
-        <h3>Geometric 3D Panel</h3>
-        <span>03</span>
-    </div>
-
-    <p>
-        Modern repeating geometric pattern designed for CNC wall panels, partitions and interior applications.
-    </p>
-
-</div>
-
-          <div class="category-item">
-
-    <img src="gallery/outcut/outcut-4.webp" alt="Classic Ornamental Panel">
-
-    <div class="category-item-heading">
-        <h3>Abstract Pebble Panel</h3>
-        <span>04</span>
-    </div>
-
-    <p>
-       Contemporary organic 3D composition with smooth flowing forms for modern decorative wall applications.
-    </p>
-
-</div>
-
-           <div class="category-item">
-
-    <img src="gallery/outcut/outcut-5.webp" alt="Classic Ornamental Panel">
-
-    <div class="category-item-heading">
-        <h3>Flowing Wave Panel</h3>
-        <span>05</span>
-    </div>
-
-    <p>
-       Sculpted wave-inspired surface with smooth flowing depth, designed for CNC feature walls and interiors.
-    </p>
-
-</div>
-
-           <div class="category-item">
-
-    <img src="gallery/outcut/outcut-6.webp" alt="Classic Ornamental Panel">
-
-    <div class="category-item-heading">
-        <h3>Tropical Leaf Panel</h3>
-        <span>06</span>
-    </div>
-
-    <p>
-        Detailed botanical panel featuring layered tropical leaves for decorative CNC carving and feature walls.
-    </p>
-
-</div>
-
-           <div class="category-item">
-
-    <img src="gallery/outcut/outcut-7.webp" alt="Classic Ornamental Panel">
-
-    <div class="category-item-heading">
-        <h3>Vertical Floral Panel</h3>
-        <span>07</span>
-    </div>
-
-    <p>
-        Narrow ornamental floral composition designed for doors, pillars and decorative CNC inserts.
-    </p>
-
-</div>
-
-           <div class="category-item">
-
-    <img src="gallery/outcut/outcut-8.webp" alt="Classic Ornamental Panel">
-
-    <div class="category-item-heading">
-        <h3>Floral Vine Panel</h3>
-        <span>08</span>
-    </div>
-
-    <p>
-       Delicate climbing floral pattern with fine branches and leaves, suitable for CNC decorative panels.
-    </p>
-
-</div>
-
-           <div class="category-item">
-
-    <img src="gallery/outcut/outcut-9.webp" alt="Classic Ornamental Panel">
-
-    <div class="category-item-heading">
-        <h3>Modern Floral Relief</h3>
-        <span>09</span>
-    </div>
-
-    <p>
-        Artistic floral composition combining layered petals and textured forms for contemporary CNC decoration.
-    </p>
-
-</div>
-
-           <div class="category-item">
-
-    <img src="gallery/outcut/outcut-10.webp" alt="Classic Ornamental Panel">
-
-    <div class="category-item-heading">
-        <h3>Classic Rosette Panel</h3>
-        <span>010</span>
-    </div>
-
-    <p>
-        Traditional ornamental rosette design with symmetrical carved details for furniture and architectural decoration.
-    </p>
-
-</div>
         </div>
 
-    </main>
+
+        <!-- MODEL 03 -->
+
+        <div class="model-card">
+
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-3.webp"
+                     alt="Geometric 3D Panel">
+            </div>
+
+            <div class="model-info">
+                <h2>Geometric 3D Panel</h2>
+                <p>Modern decorative CNC wall panel design</p>
+            </div>
+
+        </div>
+
+
+        <!-- MODEL 04 -->
+
+        <div class="model-card">
+
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-4.webp"
+                     alt="Abstract 3D Panel">
+            </div>
+
+            <div class="model-info">
+                <h2>Abstract 3D Panel</h2>
+                <p>Contemporary 3D relief design for feature walls</p>
+            </div>
+
+        </div>
+
+
+        <!-- MODEL 05 -->
+
+        <div class="model-card">
+
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-5.webp"
+                     alt="Wave 3D Panel">
+            </div>
+
+            <div class="model-info">
+                <h2>Wave 3D Panel</h2>
+                <p>Flowing CNC-ready decorative surface design</p>
+            </div>
+
+        </div>
+
+
+        <!-- MODEL 06 -->
+
+        <div class="model-card">
+
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-6.webp"
+                     alt="Leaf 3D Panel">
+            </div>
+
+            <div class="model-info">
+                <h2>Leaf 3D Panel</h2>
+                <p>Nature-inspired decorative CNC relief design</p>
+            </div>
+
+        </div>
+
+
+        <!-- MODEL 07 -->
+
+        <div class="model-card">
+
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-7.webp"
+                     alt="Floral Door Panel">
+            </div>
+
+            <div class="model-info">
+                <h2>Floral Door Panel</h2>
+                <p>Detailed vertical floral carving design</p>
+            </div>
+
+        </div>
+
+
+        <!-- MODEL 08 -->
+
+        <div class="model-card">
+
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-8.webp"
+                     alt="Decorative Floral Panel">
+            </div>
+
+            <div class="model-info">
+                <h2>Decorative Floral Panel</h2>
+                <p>CNC-ready botanical relief carving design</p>
+            </div>
+
+        </div>
+
+
+        <!-- MODEL 09 -->
+
+        <div class="model-card">
+
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-9.webp"
+                     alt="Flower Wall Panel">
+            </div>
+
+            <div class="model-info">
+                <h2>Flower Wall Panel</h2>
+                <p>Layered floral 3D relief for decorative interiors</p>
+            </div>
+
+        </div>
+
+
+        <!-- MODEL 10 -->
+
+        <div class="model-card">
+
+            <div class="model-image">
+                <img src="gallery/3D%20Model/3D%20Model-10.webp"
+                     alt="Decorative Square Panel">
+            </div>
+
+            <div class="model-info">
+                <h2>Decorative Square Panel</h2>
+                <p>Classic ornamental CNC-ready 3D design</p>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- FULL SCREEN VIEW -->
+
+<div class="lightbox" id="lightbox">
+
+    <span class="close-btn">&times;</span>
+
+    <img id="lightboxImage" src="" alt="3D Design">
+
+</div>
+
+
+
+<script>
+
+const cards =
+    document.querySelectorAll(".model-card");
+
+const lightbox =
+    document.getElementById("lightbox");
+
+const lightboxImage =
+    document.getElementById("lightboxImage");
+
+const closeButton =
+    document.querySelector(".close-btn");
+
+
+cards.forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        const image =
+            card.querySelector("img");
+
+        lightboxImage.src =
+            image.src;
+
+        lightbox.classList.add("active");
+
+    });
+
+});
+
+
+closeButton.addEventListener("click", () => {
+
+    lightbox.classList.remove("active");
+
+});
+
+
+lightbox.addEventListener("click", (event) => {
+
+    if (event.target === lightbox) {
+
+        lightbox.classList.remove("active");
+
+    }
+
+});
+
+
+document.addEventListener("keydown", (event) => {
+
+    if (event.key === "Escape") {
+
+        lightbox.classList.remove("active");
+
+    }
+
+});
+
+</script>
+
 
 </body>
 </html>

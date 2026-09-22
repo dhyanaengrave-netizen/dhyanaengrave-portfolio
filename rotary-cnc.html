@@ -4,94 +4,417 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>3D Relief Design | Dhyana Engrave</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ================= FULL SCREEN IMAGE ================= */
+
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        .image-lightbox.active {
+            display: flex;
+        }
+
+        .image-lightbox img {
+            width: auto !important;
+            height: auto !important;
+            max-width: 95vw !important;
+            max-height: 92vh !important;
+            object-fit: contain !important;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 50px;
+            font-family: Arial, sans-serif;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 100000;
+        }
+
+        .service-gallery-card img {
+            cursor: zoom-in;
+        }
+
+        @media (max-width: 750px) {
+
+            .image-lightbox {
+                padding: 15px;
+            }
+
+            .image-lightbox img {
+                max-width: 95vw !important;
+                max-height: 90vh !important;
+            }
+
+            .lightbox-close {
+                top: 15px;
+                right: 20px;
+                font-size: 45px;
+            }
+        }
+
+    </style>
+
 </head>
+
 
 <body class="service-gallery-page">
 
-<header class="inner-header">
 
-    <a href="index.html" class="brand">Dhyana Engrave</a>
+    <!-- ================= HEADER ================= -->
 
-    <nav class="nav">
-        <a href="index.html">Home</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#cnc-portfolio">Portfolio</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+    <header class="inner-header">
 
-    <a href="contact.html" class="quote-link">Get a Quote</a>
+        <a href="index.html" class="brand">
+            Dhyana Engrave
+        </a>
 
-</header>
+        <nav class="nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#cnc-portfolio">
+                Portfolio
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+        <a href="contact.html" class="quote-link">
+            Get a Quote
+        </a>
+
+    </header>
 
 
-<main class="service-gallery-main">
+    <!-- ================= MAIN ================= -->
 
-    <div class="service-gallery-heading">
+    <main class="service-gallery-main">
 
-        <p>OUR SERVICES / 03</p>
 
-        <h1>3D Relief Design</h1>
+        <!-- ================= HEADING ================= -->
 
-        <p class="service-gallery-description">
-            Detailed 3D relief models created for CNC carving,
-            decorative panels, architectural work and custom fabrication.
-        </p>
+        <div class="service-gallery-heading">
+
+            <p>
+                OUR SERVICES / 03
+            </p>
+
+            <h1>
+                3D Relief Design
+            </h1>
+
+            <p class="service-gallery-description">
+                Detailed 3D relief models created for CNC carving,
+                decorative panels, architectural work and custom fabrication.
+            </p>
+
+        </div>
+
+
+        <!-- ================= GALLERY ================= -->
+
+        <div class="service-gallery-grid">
+
+
+            <!-- 01 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-1.webp"
+                    alt="Rotary CNC 1"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>01</span>
+
+            </div>
+
+
+            <!-- 02 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-2.webp"
+                    alt="Rotary CNC 2"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>02</span>
+
+            </div>
+
+
+            <!-- 03 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-3.webp"
+                    alt="Rotary CNC 3"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>03</span>
+
+            </div>
+
+
+            <!-- 04 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-4.webp"
+                    alt="Rotary CNC 4"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>04</span>
+
+            </div>
+
+
+            <!-- 05 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-5.webp"
+                    alt="Rotary CNC 5"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>05</span>
+
+            </div>
+
+
+            <!-- 06 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-6.webp"
+                    alt="Rotary CNC 6"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>06</span>
+
+            </div>
+
+
+            <!-- 07 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-7.webp"
+                    alt="Rotary CNC 7"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>07</span>
+
+            </div>
+
+
+            <!-- 08 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-8.webp"
+                    alt="Rotary CNC 8"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>08</span>
+
+            </div>
+
+
+            <!-- 09 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-9.webp"
+                    alt="Rotary CNC 9"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>09</span>
+
+            </div>
+
+
+            <!-- 10 -->
+
+            <div class="service-gallery-card">
+
+                <img
+                    src="gallery/Rotary Design/Rotary Design-10.webp"
+                    alt="Rotary CNC 10"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <span>10</span>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FULL SCREEN IMAGE ================= -->
+
+    <div class="image-lightbox" id="imageLightbox">
+
+        <span
+            class="lightbox-close"
+            id="lightboxClose"
+        >
+            &times;
+        </span>
+
+        <img
+            id="fullscreenImage"
+            src=""
+            alt="Full Screen Design"
+        >
 
     </div>
 
 
-    <div class="service-gallery-grid">
+    <!-- ================= LIGHTBOX SCRIPT ================= -->
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-1.webp" alt="Rotary CNC 1">
-        <span>01</span>
-    </div>
+    <script>
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-2.webp" alt="Rotary CNC 2">
-        <span>02</span>
-    </div>
+        const galleryImages =
+            document.querySelectorAll(".service-gallery-card img");
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-3.webp" alt="Rotary CNC 3">
-        <span>03</span>
-    </div>
+        const imageLightbox =
+            document.getElementById("imageLightbox");
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-4.webp" alt="Rotary CNC 4">
-        <span>04</span>
-    </div>
+        const fullscreenImage =
+            document.getElementById("fullscreenImage");
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-5.webp" alt="Rotary CNC 5">
-        <span>05</span>
-    </div>
+        const lightboxClose =
+            document.getElementById("lightboxClose");
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-6.webp" alt="Rotary CNC 6">
-        <span>06</span>
-    </div>
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-7.webp" alt="Rotary CNC 7">
-        <span>07</span>
-    </div>
+        /* OPEN IMAGE */
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-8.webp" alt="Rotary CNC 8">
-        <span>08</span>
-    </div>
+        galleryImages.forEach(function(image) {
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-9.webp" alt="Rotary CNC 9">
-        <span>09</span>
-    </div>
+            image.addEventListener("click", function() {
 
-    <div class="service-gallery-card">
-        <img src="gallery/Rotary Design/Rotary Design-10.webp" alt="Rotary CNC 10">
-        <span>10</span>
-    </div>
+                fullscreenImage.src = this.src;
 
-</div>
+                fullscreenImage.alt = this.alt;
+
+                imageLightbox.classList.add("active");
+
+                document.body.style.overflow = "hidden";
+
+            });
+
+        });
+
+
+        /* CLOSE BUTTON */
+
+        lightboxClose.addEventListener("click", function(event) {
+
+            event.stopPropagation();
+
+            imageLightbox.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        });
+
+
+        /* BLACK BACKGROUND CLICK */
+
+        imageLightbox.addEventListener("click", function(event) {
+
+            if (event.target === imageLightbox) {
+
+                imageLightbox.classList.remove("active");
+
+                document.body.style.overflow = "";
+
+            }
+
+        });
+
+
+        /* ESC KEY */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (
+                event.key === "Escape" &&
+                imageLightbox.classList.contains("active")
+            ) {
+
+                imageLightbox.classList.remove("active");
+
+                document.body.style.overflow = "";
+
+            }
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>

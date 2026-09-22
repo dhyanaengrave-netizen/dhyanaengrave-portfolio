@@ -8,11 +8,82 @@
     <title>ZBrush 3D Relief | Dhyana Engrave</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* ================= FULL SCREEN IMAGE ================= */
+
+        .image-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        .image-lightbox.active {
+            display: flex;
+        }
+
+        .image-lightbox img {
+            width: auto !important;
+            height: auto !important;
+            max-width: 95vw !important;
+            max-height: 92vh !important;
+            object-fit: contain !important;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 50px;
+            font-family: Arial, sans-serif;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 100000;
+        }
+
+        .category-item > img {
+            cursor: zoom-in;
+        }
+
+        @media (max-width: 750px) {
+
+            .image-lightbox {
+                padding: 15px;
+            }
+
+            .image-lightbox img {
+                max-width: 95vw !important;
+                max-height: 90vh !important;
+            }
+
+            .lightbox-close {
+                top: 15px;
+                right: 20px;
+                font-size: 45px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body class="inner-page">
 
-    <!-- HEADER -->
+
+    <!-- ================= HEADER ================= -->
+
     <header class="header inner-header">
 
         <a href="index.html" class="brand">
@@ -20,10 +91,23 @@
         </a>
 
         <nav class="nav">
-            <a href="index.html">Home</a>
-            <a href="index.html#about">About</a>
-            <a href="index.html#cnc-portfolio" class="active">Portfolio</a>
-            <a href="index.html#contact">Contact</a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#cnc-portfolio" class="active">
+                Portfolio
+            </a>
+
+            <a href="index.html#contact">
+                Contact
+            </a>
+
         </nav>
 
         <a href="index.html#contact" class="quote-link">
@@ -33,12 +117,18 @@
     </header>
 
 
-    <!-- ZBRUSH PAGE -->
+    <!-- ================= ZBRUSH PAGE ================= -->
+
     <main class="category-page">
+
+
+        <!-- ================= HEADING ================= -->
 
         <div class="category-heading">
 
-            <p>DHYANA ENGRAVE / PORTFOLIO</p>
+            <p>
+                DHYANA ENGRAVE / PORTFOLIO
+            </p>
 
             <h1>
                 ZBrush<br>
@@ -62,163 +152,360 @@
         </div>
 
 
-        <!-- GALLERY -->
+        <!-- ================= GALLERY ================= -->
+
         <div class="category-grid">
 
-           <div class="category-item">
 
-    <img src="gallery/Zbrush/Zbrush-1.webp" alt="Hand and Drapery Relief">
+            <!-- 01 -->
 
-    <div class="category-item-heading">
-        <h3>Hand & Drapery Relief</h3>
-        <span>01</span>
-    </div>
+            <div class="category-item">
 
-    <p>
-        Detailed ZBrush relief sculpt featuring realistic hand anatomy,
-        fabric folds and fine ornamental details for CNC carving.
-    </p>
+                <img
+                    src="gallery/Zbrush/Zbrush-1.webp"
+                    alt="Hand and Drapery Relief"
+                    loading="lazy"
+                    decoding="async"
+                >
 
-</div>
+                <div class="category-item-heading">
+                    <h3>Hand & Drapery Relief</h3>
+                    <span>01</span>
+                </div>
 
-  <div class="category-item">
+                <p>
+                    Detailed ZBrush relief sculpt featuring realistic hand anatomy,
+                    fabric folds and fine ornamental details for CNC carving.
+                </p>
 
-    <img src="gallery/Zbrush/Zbrush-2.webp" alt="Ornamental Jewelry Relief">
+            </div>
 
-    <div class="category-item-heading">
-        <h3>Ornamental Jewelry Relief</h3>
-        <span>02</span>
-    </div>
 
-    <p>
-        Intricate decorative jewelry element sculpted with layered forms
-        and fine detailing for CNC production.
-    </p>
+            <!-- 02 -->
 
-</div>
+            <div class="category-item">
 
-          <div class="category-item">
+                <img
+                    src="gallery/Zbrush/Zbrush-2.webp"
+                    alt="Ornamental Jewelry Relief"
+                    loading="lazy"
+                    decoding="async"
+                >
 
-    <img src="gallery/Zbrush/Zbrush-3.webp" alt="Ornamental Jewelry Relief">
+                <div class="category-item-heading">
+                    <h3>Ornamental Jewelry Relief</h3>
+                    <span>02</span>
+                </div>
 
-    <div class="category-item-heading">
-        <h3>Decorative Nature Panel</h3>
-        <span>03</span>
-    </div>
+                <p>
+                    Intricate decorative jewelry element sculpted with layered forms
+                    and fine detailing for CNC production.
+                </p>
 
-    <p>
-        Vertical 3D relief panel with flowing natural forms, developed for decorative CNC carving applications.
-    </p>
+            </div>
 
-</div>
 
-          <div class="category-item">
+            <!-- 03 -->
 
-    <img src="gallery/Zbrush/Zbrush-4.webp" alt="Ornamental Jewelry Relief">
+            <div class="category-item">
 
-    <div class="category-item-heading">
-        <h3>Floral Jali Panel</h3>
-        <span>04</span>
-    </div>
+                <img
+                    src="gallery/Zbrush/Zbrush-3.webp"
+                    alt="Decorative Nature Panel"
+                    loading="lazy"
+                    decoding="async"
+                >
 
-    <p>
-        Detailed ornamental jali design with floral patterns, prepared for decorative CNC panels and architectural work.
-    </p>
+                <div class="category-item-heading">
+                    <h3>Decorative Nature Panel</h3>
+                    <span>03</span>
+                </div>
 
-</div>
+                <p>
+                    Vertical 3D relief panel with flowing natural forms,
+                    developed for decorative CNC carving applications.
+                </p>
 
-           <div class="category-item">
+            </div>
 
-    <img src="gallery/Zbrush/Zbrush-5.webp" alt="Ornamental Jewelry Relief">
 
-    <div class="category-item-heading">
-        <h3>Decorative Cow Relief</h3>
-        <span>05</span>
-    </div>
+            <!-- 04 -->
 
-    <p>
-        Stylized animal relief sculpted with smooth contours and ornamental detailing for CNC carving.
-    </p>
+            <div class="category-item">
 
-</div>
-          <div class="category-item">
+                <img
+                    src="gallery/Zbrush/Zbrush-4.webp"
+                    alt="Floral Jali Panel"
+                    loading="lazy"
+                    decoding="async"
+                >
 
-    <img src="gallery/Zbrush/Zbrush-6.webp" alt="Ornamental Jewelry Relief">
+                <div class="category-item-heading">
+                    <h3>Floral Jali Panel</h3>
+                    <span>04</span>
+                </div>
 
-    <div class="category-item-heading">
-        <h3>Cow & Lotus Relief</h3>
-        <span>06</span>
-    </div>
+                <p>
+                    Detailed ornamental jali design with floral patterns,
+                    prepared for decorative CNC panels and architectural work.
+                </p>
 
-    <p>
-        Decorative ZBrush composition combining sculpted animal forms with detailed lotus elements for CNC artwork.
-    </p>
+            </div>
 
-</div>
 
-          <div class="category-item">
+            <!-- 05 -->
 
-    <img src="gallery/Zbrush/Zbrush-7.webp" alt="Ornamental Jewelry Relief">
+            <div class="category-item">
 
-    <div class="category-item-heading">
-        <h3>Abstract Flow Panel</h3>
-        <span>07</span>
-    </div>
+                <img
+                    src="gallery/Zbrush/Zbrush-5.webp"
+                    alt="Decorative Cow Relief"
+                    loading="lazy"
+                    decoding="async"
+                >
 
-    <p>
-       Modern flowing 3D surface pattern sculpted for CNC wall panels, interiors and decorative applications.
-    </p>
+                <div class="category-item-heading">
+                    <h3>Decorative Cow Relief</h3>
+                    <span>05</span>
+                </div>
 
-</div>
+                <p>
+                    Stylized animal relief sculpted with smooth contours and
+                    ornamental detailing for CNC carving.
+                </p>
 
-           <div class="category-item">
+            </div>
 
-    <img src="gallery/Zbrush/Zbrush-8.webp" alt="Ornamental Jewelry Relief">
 
-    <div class="category-item-heading">
-        <h3>Landscape Relief</h3>
-        <span>08</span>
-    </div>
+            <!-- 06 -->
 
-    <p>
-        Detailed scenic relief featuring architectural and natural elements, created for large-format CNC carving.
-    </p>
+            <div class="category-item">
 
-</div>
+                <img
+                    src="gallery/Zbrush/Zbrush-6.webp"
+                    alt="Cow and Lotus Relief"
+                    loading="lazy"
+                    decoding="async"
+                >
 
-           <div class="category-item">
+                <div class="category-item-heading">
+                    <h3>Cow & Lotus Relief</h3>
+                    <span>06</span>
+                </div>
 
-    <img src="gallery/Zbrush/Zbrush-9.webp" alt="Ornamental Jewelry Relief">
+                <p>
+                    Decorative ZBrush composition combining sculpted animal
+                    forms with detailed lotus elements for CNC artwork.
+                </p>
 
-    <div class="category-item-heading">
-        <h3>Meditation Sculpture</h3>
-        <span>09</span>
-    </div>
+            </div>
 
-    <p>
-       Standalone character sculpture modeled with clean forms and detailed anatomy for 3D and CNC production.
-    </p>
 
-</div>
+            <!-- 07 -->
 
-          <div class="category-item">
+            <div class="category-item">
 
-    <img src="gallery/Zbrush/Zbrush-10.webp" alt="Ornamental Jewelry Relief">
+                <img
+                    src="gallery/Zbrush/Zbrush-7.webp"
+                    alt="Abstract Flow Panel"
+                    loading="lazy"
+                    decoding="async"
+                >
 
-    <div class="category-item-heading">
-        <h3>Decorative Horse Model</h3>
-        <span>010</span>
-    </div>
+                <div class="category-item-heading">
+                    <h3>Abstract Flow Panel</h3>
+                    <span>07</span>
+                </div>
 
-    <p>
-       Detailed standalone horse sculpture featuring ornamental body patterns and refined anatomical forms.
-    </p>
+                <p>
+                    Modern flowing 3D surface pattern sculpted for CNC wall
+                    panels, interiors and decorative applications.
+                </p>
 
-</div>  
+            </div>
+
+
+            <!-- 08 -->
+
+            <div class="category-item">
+
+                <img
+                    src="gallery/Zbrush/Zbrush-8.webp"
+                    alt="Landscape Relief"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <div class="category-item-heading">
+                    <h3>Landscape Relief</h3>
+                    <span>08</span>
+                </div>
+
+                <p>
+                    Detailed scenic relief featuring architectural and natural
+                    elements, created for large-format CNC carving.
+                </p>
+
+            </div>
+
+
+            <!-- 09 -->
+
+            <div class="category-item">
+
+                <img
+                    src="gallery/Zbrush/Zbrush-9.webp"
+                    alt="Meditation Sculpture"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <div class="category-item-heading">
+                    <h3>Meditation Sculpture</h3>
+                    <span>09</span>
+                </div>
+
+                <p>
+                    Standalone character sculpture modeled with clean forms
+                    and detailed anatomy for 3D and CNC production.
+                </p>
+
+            </div>
+
+
+            <!-- 10 -->
+
+            <div class="category-item">
+
+                <img
+                    src="gallery/Zbrush/Zbrush-10.webp"
+                    alt="Decorative Horse Model"
+                    loading="lazy"
+                    decoding="async"
+                >
+
+                <div class="category-item-heading">
+                    <h3>Decorative Horse Model</h3>
+                    <span>10</span>
+                </div>
+
+                <p>
+                    Detailed standalone horse sculpture featuring ornamental
+                    body patterns and refined anatomical forms.
+                </p>
+
+            </div>
+
 
         </div>
 
     </main>
 
+
+    <!-- ================= FULL SCREEN IMAGE ================= -->
+
+    <div class="image-lightbox" id="imageLightbox">
+
+        <span
+            class="lightbox-close"
+            id="lightboxClose"
+        >
+            &times;
+        </span>
+
+        <img
+            id="fullscreenImage"
+            src=""
+            alt="Full Screen ZBrush Design"
+        >
+
+    </div>
+
+
+    <!-- ================= LIGHTBOX SCRIPT ================= -->
+
+    <script>
+
+        const galleryImages =
+            document.querySelectorAll(".category-item > img");
+
+        const imageLightbox =
+            document.getElementById("imageLightbox");
+
+        const fullscreenImage =
+            document.getElementById("fullscreenImage");
+
+        const lightboxClose =
+            document.getElementById("lightboxClose");
+
+
+        /* ===== OPEN IMAGE ===== */
+
+        galleryImages.forEach(function(image) {
+
+            image.addEventListener("click", function() {
+
+                fullscreenImage.src = this.src;
+
+                fullscreenImage.alt = this.alt;
+
+                imageLightbox.classList.add("active");
+
+                document.body.style.overflow = "hidden";
+
+            });
+
+        });
+
+
+        /* ===== CLOSE BUTTON ===== */
+
+        lightboxClose.addEventListener("click", function(event) {
+
+            event.stopPropagation();
+
+            imageLightbox.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+        });
+
+
+        /* ===== BLACK BACKGROUND CLICK ===== */
+
+        imageLightbox.addEventListener("click", function(event) {
+
+            if (event.target === imageLightbox) {
+
+                imageLightbox.classList.remove("active");
+
+                document.body.style.overflow = "";
+
+            }
+
+        });
+
+
+        /* ===== ESC KEY ===== */
+
+        document.addEventListener("keydown", function(event) {
+
+            if (
+                event.key === "Escape" &&
+                imageLightbox.classList.contains("active")
+            ) {
+
+                imageLightbox.classList.remove("active");
+
+                document.body.style.overflow = "";
+
+            }
+
+        });
+
+    </script>
+
+
 </body>
+
 </html>
