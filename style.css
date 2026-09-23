@@ -1,4 +1,7 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Original+Surfer&display=swap');
+
+*{
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -2229,4 +2232,125 @@ body.inner-page .category-page .category-item > p {
     text-decoration: underline !important;
 
     font-size: 18px !important;
+}
+/* ===== ORIGINAL SURFER - MAIN HEADINGS ONLY ===== */
+
+.hero-text h1,
+.portfolio-heading h2,
+.cnc-portfolio-title,
+.about-left h2,
+.testimonial-heading h2,
+.featured-heading h2,
+.category-heading h1,
+.contact-heading h1,
+.footer-left h2 {
+    font-family: 'Original Surfer', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+/* Responsive overrides. Existing desktop styles above remain unchanged. */
+@media (max-width: 1100px) {
+    .header, .inner-header, .inner-page .inner-header {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        height: auto !important;
+        min-height: 100px;
+        padding: 10px 18px !important;
+        column-gap: 12px;
+        row-gap: 2px;
+    }
+    .header .brand, .inner-header .brand {
+        font-size: clamp(20px, 3vw, 27px) !important;
+        letter-spacing: -0.6px;
+    }
+    .header .nav, .inner-header .nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+        justify-content: space-between;
+        gap: 12px !important;
+    }
+    .nav a, .quote-link { min-height: 44px; display: inline-flex; align-items: center; }
+    .header .quote-link, .inner-header .quote-link { font-size: 16px !important; white-space: nowrap; }
+    .hero { padding-top: 155px; }
+    .about-section { grid-template-columns: 1fr; gap: 32px; }
+    .about-photo img { max-width: 560px; }
+    .testimonial-bottom { padding-left: 20px; padding-right: 10px; }
+    .footer-copy { position: static; grid-column: 1 / -1; margin-top: 36px; }
+    .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .category-item { width: 100%; min-width: 0; }
+    .category-item img { width: 100% !important; max-width: 100%; }
+}
+
+@media (max-width: 850px) {
+    .header { top: 12px; left: 12px; width: calc(100% - 24px); }
+    .hero { min-height: 100svh; padding: 150px 22px 50px; }
+    .hero-text { max-width: 100%; min-width: 0; }
+    .hero-text h1 { font-size: clamp(34px, 7.6vw, 52px); line-height: 1.06; letter-spacing: 0; }
+    .hero-text p { margin-top: 24px; font-size: 17px; }
+    .hero-btn { padding: 15px 32px; margin-top: 24px; }
+    .portfolio-section, .about-section, .cnc-portfolio { padding: 60px 20px; }
+    .portfolio-grid, .cnc-portfolio-grid { grid-template-columns: minmax(0, 1fr); }
+    .portfolio-card img { height: auto; aspect-ratio: 1 / 1; }
+    .portfolio-info { grid-template-columns: 38px minmax(0, 1fr); }
+    .portfolio-info h3 { font-size: 22px; }
+    .about-left h2, .portfolio-heading h2, .cnc-portfolio-title,
+    .testimonial-heading h2, .featured-heading h2 { font-size: clamp(38px, 8vw, 56px); }
+    .about-photo img { height: auto; max-height: 500px; }
+    .about-right, .about-left, .service-row > *, .testimonial-content { min-width: 0; }
+    .about-right a { line-height: 1.6; }
+    .service-row { grid-template-columns: 120px minmax(0, 1fr); gap: 16px; }
+    .service-image img { width: 120px; height: 150px; }
+    .service-row h2 { font-size: 29px; letter-spacing: -1px; }
+    .service-row > a { min-height: 44px; display: inline-flex; align-items: center; }
+    .cnc-project-heading { gap: 12px; }
+    .cnc-project-heading h3 { font-size: 28px; }
+    .cnc-project-heading span { font-size: 22px; }
+    .cnc-project > p { font-size: 17px; margin-top: 20px; }
+    .testimonials { padding: 65px 20px; }
+    .testimonial-heading { margin-bottom: 40px; }
+    .testimonial-heading p { margin-bottom: 20px; }
+    .testimonial-card { width: 100%; height: auto; grid-template-columns: minmax(0, 1fr); padding: 16px; }
+    .testimonial-slider { height: clamp(260px, 85vw, 440px); }
+    .testimonial-content { min-height: 0; padding: 24px 0 8px; }
+    .testimonial-top { gap: 12px; }
+    .testimonial-top h3 { font-size: 24px; }
+    .testimonial-top span { font-size: 22px; }
+    .testimonial-bottom { margin-top: 30px; padding: 0; }
+    .testimonial-review { font-size: 18px; }
+    .featured-heading { margin-bottom: 40px; }
+    .featured-heading p { font-size: 17px; margin-top: 24px; }
+    .featured-cta { padding: 40px 20px 55px; }
+    .featured-cta-btn { max-width: 100%; font-size: 20px; }
+    .site-footer { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; padding: 50px 20px 30px; }
+    .footer-left { grid-column: 1 / -1; }
+    .footer-left h2 { font-size: 65px; }
+    .footer-menu a, .footer-social a { font-size: 19px; min-height: 44px; display: inline-flex; align-items: center; }
+    .footer-contact { overflow-wrap: anywhere; font-size: 18px; }
+    .footer-copy { margin-top: 12px; font-size: 14px; line-height: 1.5; }
+    .category-page { padding: 50px 20px; }
+    .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 12px; }
+    .category-item img { height: auto !important; aspect-ratio: 1; }
+    .outcut-page .outcut-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .outcut-page .outcut-card { width: 100% !important; min-width: 0; }
+    .outcut-page .outcut-card img { width: 100% !important; height: auto !important; aspect-ratio: 1; }
+    .category-heading-bottom { flex-direction: column; align-items: flex-start; gap: 24px; }
+    .service-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 24px 12px !important; }
+    .service-gallery-card { width: 100% !important; min-width: 0 !important; }
+    .service-gallery-card img { width: 100% !important; height: auto !important; aspect-ratio: 1; }
+    .work-lightbox { height: 100dvh !important; }
+    .lightbox-image-box { height: 80dvh !important; }
+    .lightbox-image-box img { max-height: 80dvh !important; }
+    .lightbox-arrow { padding: 10px; min-width: 44px; min-height: 44px; }
+    .lightbox-close { min-width: 44px; min-height: 44px; }
+}
+
+@media (max-width: 380px) {
+    .outcut-page .outcut-top h1 { font-size: 42px; letter-spacing: -1px; }
+    .header, .inner-header, .inner-page .inner-header { padding-left: 12px !important; padding-right: 12px !important; }
+    .header .brand, .inner-header .brand { font-size: 19px !important; }
+    .header .quote-link, .inner-header .quote-link { font-size: 14px !important; }
+    .nav a { font-size: 16px; }
+    .service-row { grid-template-columns: minmax(0, 1fr); }
+    .service-image { grid-row: auto; }
+    .service-image img { width: 100%; height: auto; aspect-ratio: 4 / 3; }
 }
