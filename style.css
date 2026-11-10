@@ -129,7 +129,7 @@ body {
             rgba(246, 245, 239, 0.18) 65%,
             rgba(246, 245, 239, 0.05) 100%
         ),
-        url("hero-bg.webp.webp");
+        url("https://dhyanaengrave.com/hero-bg.webp.webp");
 
     background-size: cover;
     background-position: center;
@@ -2354,3 +2354,101 @@ body.inner-page .category-page .category-item > p {
     .service-image { grid-row: auto; }
     .service-image img { width: 100%; height: auto; aspect-ratio: 4 / 3; }
 }
+
+/* Show complete artwork inside the existing responsive image frames. */
+.portfolio-card img,
+.service-image img {
+    object-fit: contain;
+    object-position: center;
+    background: #f6f5ef;
+}
+.portfolio-card:hover img,
+.service-row:hover .service-image img {
+    transform: none;
+}
+
+/* Floating WhatsApp logo with animated dots behind it. */
+.whatsapp-float {
+    position: fixed;
+    left: 20px;
+    bottom: 70px;
+    left: max(20px, env(safe-area-inset-left));
+    bottom: calc(70px + env(safe-area-inset-bottom, 0px));
+    z-index: 9999;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background: #167c3c;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,.22);
+}
+.whatsapp-float span { display: none; }
+.whatsapp-float svg { width: 30px; height: 30px; flex-shrink: 0; }
+.whatsapp-float:hover { background: #116330; }
+.whatsapp-float:focus-visible { outline: 3px solid #35241e; outline-offset: 5px; }
+.whatsapp-float::before,
+.whatsapp-float::after {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    color: #25b95b;
+    box-shadow: 0 -36px currentColor, 25px -25px currentColor,
+                36px 0 currentColor, 25px 25px currentColor,
+                0 36px currentColor, -25px 25px currentColor,
+                -36px 0 currentColor, -25px -25px currentColor;
+    animation: whatsapp-dots 3.6s ease-in-out infinite;
+}
+.whatsapp-float::after { animation-delay: -1.8s; }
+@keyframes whatsapp-dots {
+    0% { transform: rotate(0deg) scale(.7); opacity: 0; }
+    30% { opacity: .7; }
+    100% { transform: rotate(60deg) scale(1.28); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .whatsapp-float::before, .whatsapp-float::after { animation: none; opacity: 0; }
+}
+
+/* Template-inspired motion */
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 130px; }
+.hero { isolation: isolate; }
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 75% 45%, rgba(205,139,76,.22), transparent 58%);
+    animation: studio-glow 9s ease-in-out infinite alternate;
+}
+@keyframes studio-glow {
+    from { opacity: .25; transform: translateX(-2%); }
+    to { opacity: .85; transform: translateX(0); }
+}
+.hero-btn, .featured-cta-btn {
+    transition: background .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+.hero-btn:hover, .featured-cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(77,43,31,.18);
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero::after { animation: none; }
+    .featured-track { animation-play-state: paused; }
+    .hero-btn, .featured-cta-btn { transition: none; }
+}
+/* End template-inspired motion */
